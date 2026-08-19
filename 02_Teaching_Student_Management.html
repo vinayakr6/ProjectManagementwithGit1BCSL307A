@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase 2 | Teaching & Student Management | 1BCSL307A</title>
+<style>
+:root{--p:#1d4ed8;--pd:#163ea8;--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;--b:#dbe3ef;--g:#15803d;--a:#b45309;--r:#b91c1c;--shadow:0 8px 24px rgba(15,23,42,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 Inter,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--b);box-shadow:0 2px 10px #00000008}.head{max-width:1600px;margin:auto;display:flex;align-items:center;gap:14px;padding:11px 20px}.logo{width:56px;height:56px;border:1px solid var(--b);border-radius:11px;display:grid;place-items:center;overflow:hidden;background:#f8fafc}.logo img{width:100%;height:100%;object-fit:contain;display:none}.lp{font-weight:800;color:var(--p);font-size:11px}.ht{flex:1;min-width:0}.ht h1{font-size:19px;margin:0}.ht p{margin:2px 0 0;color:var(--muted);font-size:12px}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid var(--b);background:#fff;color:var(--text);padding:8px 11px;border-radius:8px;font-weight:700}.btn:hover{background:#f8fafc}.btn.primary{background:var(--p);border-color:var(--p);color:#fff}.btn.primary:hover{background:var(--pd)}.btn.green{background:var(--g);border-color:var(--g);color:#fff}.btn.red{background:var(--r);border-color:var(--r);color:#fff}.btn.sm{padding:5px 8px;font-size:12px}
+.nav{display:flex;gap:5px;overflow:auto;padding:6px 20px;background:#f8fafc;border-top:1px solid #eef2f7}.nav a{white-space:nowrap;text-decoration:none;color:#475569;padding:7px 11px;border-radius:7px;font-size:12px;font-weight:800}.nav a.active{background:#dbeafe;color:var(--p)}.nav a.future{opacity:.55}
+.layout{max-width:1600px;margin:auto;display:grid;grid-template-columns:245px 1fr}.side{position:sticky;top:113px;height:calc(100vh - 113px);overflow:auto;background:#fff;border-right:1px solid var(--b);padding:16px 12px}.side h3{font-size:10px;text-transform:uppercase;color:#94a3b8;letter-spacing:.08em;margin:10px 9px 5px}.side a{display:block;text-decoration:none;color:#475569;padding:8px 10px;border-radius:7px}.side a:hover,.side a.active{background:#eff6ff;color:var(--p);font-weight:700}.content{padding:22px;min-width:0}.section{margin-bottom:27px;scroll-margin-top:130px}.sh{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:12px}.sh h2{margin:0;font-size:21px}.sh p{margin:2px 0 0;color:var(--muted);font-size:12px}.card{background:#fff;border:1px solid var(--b);border-radius:13px;box-shadow:var(--shadow);padding:17px}.grid{display:grid;gap:13px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.stat{background:#f8fafc;border:1px solid var(--b);border-radius:11px;padding:14px}.stat .l{font-size:11px;color:var(--muted)}.stat .v{font-size:24px;font-weight:900;margin-top:3px}.badge{display:inline-flex;padding:3px 7px;border-radius:999px;background:#e0e7ff;color:#3730a3;font-size:10px;font-weight:900}.green{background:#dcfce7;color:#166534}.amber{background:#fef3c7;color:#92400e}.gray{background:#f1f5f9;color:#475569}
+label{display:block;color:#475569;font-size:11px;font-weight:800;margin-bottom:4px}input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:8px 9px;background:#fff;color:var(--text)}input:focus,select:focus,textarea:focus{outline:0;border-color:#60a5fa;box-shadow:0 0 0 3px #3b82f61a}textarea{min-height:85px;resize:vertical}.field{margin-bottom:10px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.row3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}.search{max-width:340px}.table-wrap{overflow:auto;border:1px solid var(--b);border-radius:9px}table{width:100%;border-collapse:collapse;min-width:800px}th,td{padding:9px 10px;border-bottom:1px solid var(--b);text-align:left;vertical-align:middle;font-size:12px}th{background:#f8fafc;color:#475569;font-size:11px}tr:last-child td{border-bottom:0}.center{text-align:center}.checkbox{width:17px;height:17px;accent-color:var(--p)}
+.progress{height:9px;background:#e2e8f0;border-radius:99px;overflow:hidden}.progress>div{height:100%;background:var(--p);border-radius:99px}.note{padding:11px 13px;border-left:4px solid var(--p);background:#eff6ff;border-radius:7px;font-size:12px}.note.warn{border-color:var(--a);background:#fffbeb}.note.ok{border-color:var(--g);background:#f0fdf4}
+.pillbar{display:flex;gap:6px;flex-wrap:wrap}.exp-progress{padding:12px;border:1px solid var(--b);border-radius:10px;background:#fff}.exp-progress h4{margin:0 0 5px;font-size:13px}.muted{color:var(--muted)}.empty{text-align:center;color:var(--muted);padding:25px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
+.modal{position:fixed;inset:0;background:#0f172a99;z-index:50;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.box{width:min(920px,100%);max-height:91vh;overflow:auto;background:#fff;border-radius:15px;box-shadow:0 25px 60px #0003}.mh{padding:14px 17px;border-bottom:1px solid var(--b);display:flex;justify-content:space-between;align-items:center}.mh h3{margin:0}.mb{padding:17px}.mf{padding:12px 17px;border-top:1px solid var(--b);display:flex;justify-content:flex-end;gap:7px}.toast{position:fixed;right:16px;bottom:16px;background:#172033;color:#fff;padding:10px 13px;border-radius:8px;display:none;z-index:100;font-size:12px}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.side{display:none}.content{padding:15px}.g4{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.g2,.g3,.g4,.row,.row3{grid-template-columns:1fr}.content{padding:11px}.head{padding:9px 11px}.actions .btn:nth-child(n+3){display:none}.ht h1{font-size:16px}}
+@media print{.header,.side,.nav,.no-print,.modal,.toast{display:none!important}.layout{display:block}.content{padding:0}.card{box-shadow:none}.section{break-inside:auto}.table-wrap{overflow:visible}table{min-width:0}.footer{display:block}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="head">
+    <div class="logo"><img id="logoImg"><span id="logoText" class="lp">LOGO</span></div>
+    <div class="ht"><h1 id="college">College Name</h1><p id="courseLine">Project Management (with Git) · 1BCSL307A · Semester III</p></div>
+    <div class="actions no-print">
+      <button class="btn sm" onclick="openCollege()">College Setup</button>
+      <button class="btn sm" onclick="importPhase1()">Import Phase 1</button>
+      <button class="btn sm" onclick="exportPhase2()">Export Data</button>
+      <button class="btn primary sm" onclick="window.print()">Print</button>
+      <input id="phase1File" type="file" accept=".json" hidden onchange="readPhase1(event)">
+    </div>
+  </div>
+  <nav class="nav no-print">
+    <a href="01_Course_Syllabus.html">Phase 1 · Course</a>
+    <a class="active" href="02_Teaching_Student_Management.html">Phase 2 · Teaching & Students</a>
+    <a class="future" href="03_Assessment_Rubrics.html">Phase 3 · Assessment</a>
+    <a class="future" href="04_CO_PO_Attainment.html">Phase 4 · CO/PO/PSO</a>
+    <a class="future" href="05_Manuals_Reports.html">Phase 5 · Manuals</a>
+    <a class="future" href="06_Settings_Data_AI.html">Phase 6 · Settings & AI</a>
+  </nav>
+</header>
+
+<div class="layout">
+<aside class="side no-print">
+  <h3>Teaching</h3>
+  <a href="#dashboard">Dashboard</a><a href="#plan">28-Hour Teaching Plan</a><a href="#experiments">Experiment Progress</a>
+  <h3>Students</h3>
+  <a href="#students">Student List</a><a href="#attendance">Attendance</a><a href="#summary">Student Summary</a>
+  <h3>Administration</h3>
+  <a href="#configuration">Configuration</a><a href="#backup">Backup & Restore</a>
+</aside>
+
+<main class="content">
+<section id="dashboard" class="section">
+ <div class="sh"><div><h2>Phase 2 Dashboard</h2><p>Teaching plan, student register, attendance and practical-progress management.</p></div><span class="badge green">Phase 2 Active</span></div>
+ <div class="grid g4">
+  <div class="stat"><div class="l">Students</div><div class="v" id="sStudents">0</div></div>
+  <div class="stat"><div class="l">Practical Hours</div><div class="v" id="sHours">28</div></div>
+  <div class="stat"><div class="l">Experiments</div><div class="v" id="sExp">12</div></div>
+  <div class="stat"><div class="l">Avg Attendance</div><div class="v" id="sAtt">0%</div></div>
+ </div>
+ <div class="grid g2" style="margin-top:13px">
+  <div class="card"><h3 style="margin-top:0">Phase 2 Purpose</h3><p>Manage the practical teaching schedule and student-level records while keeping the course data from Phase 1 as the source for experiments and COs.</p><div class="note ok">The course contains 28 practical hours and 12 experiments in the uploaded syllabus. Phase 2 uses these as the default teaching baseline.</div></div>
+  <div class="card"><h3 style="margin-top:0">Quick Actions</h3><div style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn primary" onclick="openStudent()">+ Add Student</button><button class="btn" onclick="markAllPresent()">Mark All Present</button><button class="btn" onclick="openPlanEditor()">Edit Plan</button><button class="btn" onclick="window.print()">Print</button></div></div>
+ </div>
+</section>
+
+<section id="plan" class="section">
+ <div class="sh"><div><h2>28-Hour Teaching Plan</h2><p>Editable practical schedule. Default plan distributes one primary practical hour block per experiment and leaves the remaining hours configurable.</p></div><button class="btn primary no-print" onclick="openPlanEditor()">Edit Plan</button></div>
+ <div class="card">
+  <div class="grid g4" style="margin-bottom:13px">
+   <div><label>Total Planned Hours</label><strong id="plannedHours">0</strong></div><div><label>Course Hours</label><strong id="courseHours2">28</strong></div><div><label>Remaining / Excess</label><strong id="remainingHours">28</strong></div><div><label>Plan Status</label><strong id="planStatus">Draft</strong></div>
+  </div>
+  <div class="progress"><div id="planBar" style="width:0%"></div></div>
+  <div class="table-wrap" style="margin-top:13px"><table><thead><tr><th>#</th><th>Experiment</th><th>CO</th><th>Hours</th><th>Suggested Week</th><th>Teaching Method</th><th>Faculty Note</th></tr></thead><tbody id="planTable"></tbody></table></div>
+ </div>
+</section>
+
+<section id="experiments" class="section">
+ <div class="sh"><div><h2>Experiment Progress</h2><p>Track which practical activities have been introduced, demonstrated and completed by the class.</p></div><button class="btn no-print" onclick="resetProgress()">Reset Progress</button></div>
+ <div id="expProgress" class="grid g3"></div>
+</section>
+
+<section id="students" class="section">
+ <div class="sh"><div><h2>Student Register</h2><p>Student list for attendance and future assessment phases.</p></div><button class="btn primary no-print" onclick="openStudent()">+ Add Student</button></div>
+ <div class="card">
+  <div class="toolbar no-print"><input id="studentSearch" class="search" placeholder="Search USN, name, section..." oninput="renderStudents()"><div><button class="btn sm" onclick="importStudents()">Import CSV</button><button class="btn sm" onclick="exportStudents()">Export CSV</button><input id="csvFile" type="file" accept=".csv,text/csv" hidden onchange="readCSV(event)"></div></div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>USN / Roll No.</th><th>Name</th><th>Section</th><th>Email</th><th>Active</th><th class="no-print">Actions</th></tr></thead><tbody id="studentTable"></tbody></table></div>
+ </div>
+</section>
+
+<section id="attendance" class="section">
+ <div class="sh"><div><h2>Attendance</h2><p>Record attendance by practical session/date. Attendance data is stored locally and can be exported.</p></div><div class="no-print"><button class="btn" onclick="markAllPresent()">Mark All Present</button><button class="btn primary" onclick="saveAttendance()">Save Attendance</button></div></div>
+ <div class="card">
+  <div class="row3">
+   <div class="field"><label>Date</label><input id="attDate" type="date"></div>
+   <div class="field"><label>Experiment / Session</label><select id="attSession"></select></div>
+   <div class="field"><label>Session Hours</label><input id="attHours" type="number" min="0" value="2"></div>
+  </div>
+  <div class="toolbar no-print"><input id="attSearch" class="search" placeholder="Search student..." oninput="renderAttendance()"><span id="attState" class="badge gray">Not saved</span></div>
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>USN</th><th>Name</th><th class="center">Present</th><th class="center">Late</th><th>Remark</th></tr></thead><tbody id="attendanceTable"></tbody></table></div>
+ </div>
+</section>
+
+<section id="summary" class="section">
+ <div class="sh"><div><h2>Student Summary</h2><p>Attendance and practical progress summary suitable for faculty review.</p></div><button class="btn no-print" onclick="exportSummary()">Export Summary CSV</button></div>
+ <div class="card"><div class="table-wrap"><table><thead><tr><th>#</th><th>USN</th><th>Name</th><th>Present</th><th>Total Sessions</th><th>Attendance %</th><th>Experiments Completed</th><th>Status</th></tr></thead><tbody id="summaryTable"></tbody></table></div></div>
+</section>
+
+<section id="configuration" class="section">
+ <div class="sh"><div><h2>Teaching Configuration</h2><p>Institution-specific values remain editable; the uploaded syllabus does not prescribe a particular weekly calendar.</p></div><button class="btn primary no-print" onclick="openCollege()">Configure College</button></div>
+ <div class="grid g3">
+  <div class="card"><label>College</label><strong id="dCollege">College Name</strong></div><div class="card"><label>Faculty</label><strong id="dFaculty">Not configured</strong></div><div class="card"><label>Academic Year</label><strong id="dYear">2025-26</strong></div>
+ </div>
+ <div class="note warn" style="margin-top:13px">NBA-specific academic-process requirements, attainment thresholds and institutional PO/PSO frameworks should be configured from the institution's approved documents. This Phase 2 page does not invent them.</div>
+</section>
+
+<section id="backup" class="section">
+ <div class="sh"><div><h2>Backup & Restore</h2><p>Portable JSON backup for Phase 2 records.</p></div></div>
+ <div class="card"><div class="grid g2"><div><h3 style="margin-top:0">Export</h3><p>Save teaching plan, students, attendance and experiment progress.</p><button class="btn primary" onclick="exportPhase2()">Download Phase 2 JSON</button></div><div><h3 style="margin-top:0">Restore</h3><p>Restore a previous Phase 2 backup.</p><button class="btn" onclick="document.getElementById('restoreFile').click()">Import JSON</button><input id="restoreFile" type="file" accept=".json" hidden onchange="restoreJSON(event)"></div></div></div>
+</section>
+<div class="footer">Phase 2 · Project Management with Git · 1BCSL307A · Teaching & Student Management</div>
+</main></div>
+
+<!-- student modal -->
+<div id="studentModal" class="modal"><div class="box"><div class="mh"><h3 id="studentTitle">Add Student</h3><button class="btn sm" onclick="closeM('studentModal')">Close</button></div><div class="mb">
+<input id="editStudent" type="hidden" value="-1"><div class="row"><div class="field"><label>USN / Roll Number</label><input id="fUSN"></div><div class="field"><label>Student Name</label><input id="fName"></div></div>
+<div class="row3"><div class="field"><label>Section</label><input id="fSection"></div><div class="field"><label>Email</label><input id="fEmail" type="email"></div><div class="field"><label>Active</label><select id="fActive"><option value="true">Yes</option><option value="false">No</option></select></div></div>
+</div><div class="mf"><button class="btn" onclick="closeM('studentModal')">Cancel</button><button class="btn primary" onclick="saveStudent()">Save Student</button></div></div></div>
+
+<!-- plan modal -->
+<div id="planModal" class="modal"><div class="box"><div class="mh"><h3>Edit Teaching Plan</h3><button class="btn sm" onclick="closeM('planModal')">Close</button></div><div class="mb"><div id="planEditor"></div></div><div class="mf"><button class="btn" onclick="closeM('planModal')">Cancel</button><button class="btn primary" onclick="savePlan()">Save Plan</button></div></div></div>
+
+<!-- college modal -->
+<div id="collegeModal" class="modal"><div class="box"><div class="mh"><h3>College / Faculty Configuration</h3><button class="btn sm" onclick="closeM('collegeModal')">Close</button></div><div class="mb">
+<div class="row"><div class="field"><label>College Name</label><input id="cCollege"></div><div class="field"><label>Department</label><input id="cDept"></div></div>
+<div class="row3"><div class="field"><label>Academic Year</label><input id="cYear"></div><div class="field"><label>Faculty</label><input id="cFaculty"></div><div class="field"><label>HOD</label><input id="cHOD"></div></div>
+<div class="field"><label>University</label><input id="cUniversity"></div><div class="field"><label>College Logo</label><input id="cLogo" type="file" accept="image/*" onchange="readLogo(event)"></div>
+<div class="note">Branding is local to this browser. The Phase 1 college setup can also be imported through the Phase 1 JSON backup.</div>
+</div><div class="mf"><button class="btn" onclick="closeM('collegeModal')">Cancel</button><button class="btn primary" onclick="saveCollege()">Save</button></div></div></div>
+
+<div id="toast" class="toast"></div>
+<script>
+const KEY="pmgit_phase2_v1";
+const defaultCourse={name:"Project Management (with Git)",code:"1BCSL307A",scheme:"2025",semester:3,practicalHours:28};
+const defaultExperiments=[
+["Setting Up and Basic Commands","CO1"],["Creating and Managing Branches","CO2"],["Creating and Managing Branches","CO2"],
+["Collaboration and Remote Repositories","CO3"],["Collaboration and Remote Repositories","CO3"],["Collaboration and Remote Repositories","CO3"],
+["Git Tags and Releases","CO4"],["Advanced Git Operations","CO4"],["Analysing and Changing Git History","CO5"],["Analysing and Changing Git History","CO5"],["Analysing and Changing Git History","CO5"],["Analysing and Changing Git History","CO5"]
+];
+function baseData(){return{course:{...defaultCourse},college:{name:"College Name",department:"Department Name",academicYear:"2025-26",university:"Visvesvaraya Technological University",faculty:"",hod:"",logo:""},experiments:defaultExperiments.map((x,i)=>({number:i+1,title:x[0],co:x[1]})),plan:defaultExperiments.map((x,i)=>({number:i+1,hours:2,week:Math.floor(i/2)+1,method:"Demonstration + hands-on practice",note:""})),students:[],attendance:[],progress:{}}}
+let data=load();
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY));if(x)return merge(baseData(),x)}catch(e){}return baseData()}
+function merge(a,b){return{...a,...b,course:{...a.course,...(b.course||{})},college:{...a.college,...(b.college||{})},experiments:b.experiments||a.experiments,plan:b.plan||a.plan,students:b.students||[],attendance:b.attendance||[],progress:b.progress||{}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function toast(s){const t=document.getElementById("toast");t.textContent=s;t.style.display="block";clearTimeout(window.tt);window.tt=setTimeout(()=>t.style.display="none",2200)}
+function closeM(id){document.getElementById(id).classList.remove("open")}function openM(id){document.getElementById(id).classList.add("open")}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function render(){renderHeader();renderPlan();renderProgress();renderStudents();renderAttendance();renderSummary();fillSession();updateStats()}
+function renderHeader(){document.getElementById("college").textContent=data.college.name||"College Name";document.getElementById("courseLine").textContent=`${data.course.name} · ${data.course.code} · Semester ${data.course.semester} · Scheme ${data.course.scheme}`;document.getElementById("dCollege").textContent=data.college.name||"College Name";document.getElementById("dFaculty").textContent=data.college.faculty||"Not configured";document.getElementById("dYear").textContent=data.college.academicYear||"";let im=document.getElementById("logoImg"),tx=document.getElementById("logoText");if(data.college.logo){im.src=data.college.logo;im.style.display="block";tx.style.display="none"}else{im.style.display="none";tx.style.display="block"}}
+function updateStats(){document.getElementById("sStudents").textContent=data.students.filter(s=>s.active!==false).length;document.getElementById("sHours").textContent=data.course.practicalHours;document.getElementById("sExp").textContent=data.experiments.length;let vals=data.students.map(s=>attendancePct(s.id)).filter(x=>x!==null);document.getElementById("sAtt").textContent=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length)+"%":"0%";document.getElementById("courseHours2").textContent=data.course.practicalHours}
+function renderPlan(){let total=data.plan.reduce((a,x)=>a+Number(x.hours||0),0),target=Number(data.course.practicalHours||28),pct=Math.min(100,Math.round(total/target*100));document.getElementById("plannedHours").textContent=total;document.getElementById("remainingHours").textContent=target-total;document.getElementById("planStatus").textContent=total===target?"Complete":total<target?"Draft":"Over target";document.getElementById("planBar").style.width=pct+"%";document.getElementById("planTable").innerHTML=data.experiments.map((e,i)=>{let p=data.plan[i]||{hours:0,week:"",method:"",note:""};return`<tr><td>${e.number}</td><td>${esc(e.title)}</td><td><span class="badge">${esc(e.co)}</span></td><td>${p.hours}</td><td>Week ${p.week||"-"}</td><td>${esc(p.method||"")}</td><td>${esc(p.note||"")}</td></tr>`}).join("")}
+function openPlanEditor(){document.getElementById("planEditor").innerHTML=data.experiments.map((e,i)=>{let p=data.plan[i]||{};return`<div class="card" style="margin-bottom:9px;padding:12px"><strong>${e.number}. ${esc(e.title)}</strong><div class="row3" style="margin-top:8px"><div class="field"><label>Hours</label><input class="ph" type="number" min="0" value="${p.hours??2}"></div><div class="field"><label>Week</label><input class="pw" type="number" min="1" value="${p.week??1}"></div><div class="field"><label>Teaching Method</label><input class="pm" value="${esc(p.method||"Demonstration + hands-on practice")}"></div></div><div class="field"><label>Faculty Note</label><input class="pn" value="${esc(p.note||"")}"></div></div>`}).join("");openM("planModal")}
+function savePlan(){let cards=[...document.querySelectorAll("#planEditor>.card")];data.plan=cards.map((c,i)=>({number:data.experiments[i].number,hours:Number(c.querySelector(".ph").value||0),week:Number(c.querySelector(".pw").value||1),method:c.querySelector(".pm").value,note:c.querySelector(".pn").value}));save();render();closeM("planModal");toast("Teaching plan saved.")}
+function renderProgress(){document.getElementById("expProgress").innerHTML=data.experiments.map(e=>{let x=data.progress[e.number]||{introduced:false,demonstrated:false,completed:false};let done=[x.introduced,x.demonstrated,x.completed].filter(Boolean).length;return`<div class="exp-progress"><h4>${e.number}. ${esc(e.title)}</h4><div class="muted" style="font-size:11px;margin-bottom:7px">${esc(e.co)}</div><label><input type="checkbox" class="checkbox" ${x.introduced?"checked":""} onchange="setProgress(${e.number},'introduced',this.checked)"> Introduced</label><label><input type="checkbox" class="checkbox" ${x.demonstrated?"checked":""} onchange="setProgress(${e.number},'demonstrated',this.checked)"> Demonstrated</label><label><input type="checkbox" class="checkbox" ${x.completed?"checked":""} onchange="setProgress(${e.number},'completed',this.checked)"> Class completed</label><div class="progress" style="margin-top:8px"><div style="width:${done/3*100}%"></div></div></div>`}).join("")}
+function setProgress(n,k,v){data.progress[n]=data.progress[n]||{};data.progress[n][k]=v;save();renderProgress();toast("Progress updated.")}
+function resetProgress(){if(confirm("Reset all experiment teaching-progress markers?")){data.progress={};save();renderProgress();toast("Progress reset.")}}
+function renderStudents(){let q=(document.getElementById("studentSearch")?.value||"").toLowerCase(),list=data.students.filter(s=>`${s.usn} ${s.name} ${s.section} ${s.email}`.toLowerCase().includes(q));document.getElementById("studentTable").innerHTML=list.length?list.map((s,i)=>`<tr><td>${i+1}</td><td><strong>${esc(s.usn)}</strong></td><td>${esc(s.name)}</td><td>${esc(s.section||"")}</td><td>${esc(s.email||"")}</td><td>${s.active!==false?'<span class="badge green">Active</span>':'<span class="badge gray">Inactive</span>'}</td><td class="no-print"><button class="btn sm" onclick="editStudent('${esc(s.id)}')">Edit</button> <button class="btn sm" onclick="deleteStudent('${esc(s.id)}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="7" class="empty">No students added. Use “Add Student” or import a CSV.</td></tr>`}
+function openStudent(){document.getElementById("studentTitle").textContent="Add Student";document.getElementById("editStudent").value="-1";["fUSN","fName","fSection","fEmail"].forEach(id=>document.getElementById(id).value="");document.getElementById("fActive").value="true";openM("studentModal")}
+function editStudent(id){let s=data.students.find(x=>x.id===id);if(!s)return;document.getElementById("studentTitle").textContent="Edit Student";document.getElementById("editStudent").value=id;document.getElementById("fUSN").value=s.usn;document.getElementById("fName").value=s.name;document.getElementById("fSection").value=s.section||"";document.getElementById("fEmail").value=s.email||"";document.getElementById("fActive").value=String(s.active!==false);openM("studentModal")}
+function saveStudent(){let v=id=>document.getElementById(id).value.trim(),id=document.getElementById("editStudent").value,s={id:id===" -1"||id==="-1"?crypto.randomUUID():id,usn:v("fUSN"),name:v("fName"),section:v("fSection"),email:v("fEmail"),active:document.getElementById("fActive").value==="true"};if(!s.usn||!s.name){toast("USN and name are required.");return}let ix=data.students.findIndex(x=>x.id===id);if(ix<0)data.students.push(s);else data.students[ix]=s;save();render();closeM("studentModal");toast("Student saved.")}
+function deleteStudent(id){if(confirm("Delete this student and associated attendance records?")){data.students=data.students.filter(s=>s.id!==id);data.attendance=data.attendance.filter(a=>a.studentId!==id);save();render();toast("Student deleted.")}}
+function fillSession(){document.getElementById("attSession").innerHTML=data.experiments.map(e=>`<option value="${e.number}">Experiment ${e.number} · ${esc(e.title)}</option>`).join("")}
+function renderAttendance(){let q=(document.getElementById("attSearch")?.value||"").toLowerCase(),date=document.getElementById("attDate").value,session=document.getElementById("attSession").value,list=data.students.filter(s=>`${s.usn} ${s.name}`.toLowerCase().includes(q));document.getElementById("attendanceTable").innerHTML=list.map((s,i)=>{let a=data.attendance.find(x=>x.date===date&&String(x.session)===String(session)&&x.studentId===s.id)||{};return`<tr data-sid="${esc(s.id)}"><td>${i+1}</td><td>${esc(s.usn)}</td><td>${esc(s.name)}</td><td class="center"><input class="checkbox present" type="checkbox" ${a.present?"checked":""} onchange="syncLate(this)"></td><td class="center"><input class="checkbox late" type="checkbox" ${a.late?"checked":""}></td><td><input class="remark" value="${esc(a.remark||"")}" placeholder="Optional"></td></tr>`}).join("")}
+function syncLate(el){if(el.checked)el.closest("tr").querySelector(".late").checked=false}
+function saveAttendance(){let date=document.getElementById("attDate").value,session=document.getElementById("attSession").value,hours=Number(document.getElementById("attHours").value||0);if(!date){toast("Select an attendance date.");return}document.querySelectorAll("#attendanceTable tr[data-sid]").forEach(tr=>{let id=tr.dataset.sid,a=data.attendance.find(x=>x.date===date&&String(x.session)===String(session)&&x.studentId===id);if(!a){a={date,session,hours,studentId:id,present:false,late:false,remark:""};data.attendance.push(a)}a.hours=hours;a.present=tr.querySelector(".present").checked;a.late=tr.querySelector(".late").checked;a.remark=tr.querySelector(".remark").value});save();renderSummary();updateStats();document.getElementById("attState").textContent="Saved";document.getElementById("attState").className="badge green";toast("Attendance saved.")}
+function markAllPresent(){document.querySelectorAll("#attendanceTable .present").forEach(x=>{x.checked=true;x.closest("tr").querySelector(".late").checked=false});document.getElementById("attState").textContent="Unsaved changes";document.getElementById("attState").className="badge amber";toast("All visible students marked present.")}
+function attendancePct(id){let sessions=new Set(data.attendance.filter(a=>a.studentId===id).map(a=>a.date+"|"+a.session));if(!sessions.size)return null;let present=data.attendance.filter(a=>a.studentId===id&&a.present).length;return present/sessions.size*100}
+function renderSummary(){document.getElementById("summaryTable").innerHTML=data.students.map((s,i)=>{let rows=data.attendance.filter(a=>a.studentId===s.id),pct=attendancePct(s.id),done=data.experiments.filter(e=>data.progress[e.number]?.completed).length;let status=pct===null?"No attendance":pct>=75?"Regular":"Review";return`<tr><td>${i+1}</td><td>${esc(s.usn)}</td><td>${esc(s.name)}</td><td>${rows.filter(a=>a.present).length}</td><td>${new Set(rows.map(a=>a.date+"|"+a.session)).size}</td><td>${pct===null?"-":Math.round(pct)+"%"}</td><td>${done}/${data.experiments.length}</td><td><span class="badge ${status==="Regular"?"green":status==="Review"?"amber":"gray"}">${status}</span></td></tr>`}).join("")||`<tr><td colspan="8" class="empty">No students available.</td></tr>`}
+function importStudents(){document.getElementById("csvFile").click()}
+function readCSV(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{let lines=r.result.split(/\r?\n/).filter(Boolean),start=/usn|roll/i.test(lines[0])?1:0;for(let i=start;i<lines.length;i++){let p=lines[i].split(",").map(x=>x.trim().replace(/^"|"$/g,""));if(p.length>=2)data.students.push({id:crypto.randomUUID(),usn:p[0],name:p[1],section:p[2]||"",email:p[3]||"",active:true})}save();render();e.target.value="";toast("CSV students imported.")};r.readAsText(f)}
+function csvCell(v){return`"${String(v??"").replaceAll('"','""')}"`}
+function exportStudents(){let out=["USN,Name,Section,Email,Active",...data.students.map(s=>[s.usn,s.name,s.section,s.email,s.active!==false].map(csvCell).join(","))].join("\n");download(out,"students.csv","text/csv")}
+function exportSummary(){let out=["USN,Name,Present,Total Sessions,Attendance %,Experiments Completed,Status",...data.students.map(s=>{let rows=data.attendance.filter(a=>a.studentId===s.id),pct=attendancePct(s.id),done=data.experiments.filter(e=>data.progress[e.number]?.completed).length,status=pct===null?"No attendance":pct>=75?"Regular":"Review";return[s.usn,s.name,rows.filter(a=>a.present).length,new Set(rows.map(a=>a.date+"|"+a.session)).size,pct===null?"":Math.round(pct),done,status].map(csvCell).join(",")})].join("\n");download(out,"phase2_student_summary.csv","text/csv")}
+function download(content,name,type){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+function exportPhase2(){download(JSON.stringify(data,null,2),`${data.course.code}_phase2_backup.json`,"application/json");toast("Phase 2 backup downloaded.")}
+function restoreJSON(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(confirm("Replace current Phase 2 data?")){data=merge(baseData(),x);save();render();toast("Phase 2 restored.")}}catch(err){alert("Invalid JSON file.")}e.target.value=""};r.readAsText(f)}
+function importPhase1(){document.getElementById("phase1File").click()}
+function readPhase1(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.course&&!x.experiments){alert("This does not appear to be a Phase 1 backup.");return}data.course={...data.course,...(x.course||{})};data.college={...data.college,...(x.college||{})};if(Array.isArray(x.experiments)&&x.experiments.length){data.experiments=x.experiments.map((x,i)=>({number:x.number??i+1,title:x.title||"",co:x.co||"CO1"}));data.plan=data.experiments.map((x,i)=>data.plan[i]||({number:x.number,hours:2,week:Math.floor(i/2)+1,method:"Demonstration + hands-on practice",note:""}))}save();render();toast("Phase 1 course data imported.")}catch(err){alert("Invalid Phase 1 backup.")}e.target.value=""};r.readAsText(f)}
+let pendingLogo="";
+function openCollege(){let c=data.college;[["cCollege",c.name],["cDept",c.department],["cYear",c.academicYear],["cFaculty",c.faculty],["cHOD",c.hod],["cUniversity",c.university]].forEach(([i,v])=>document.getElementById(i).value=v||"");pendingLogo="";openM("collegeModal")}
+function readLogo(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>pendingLogo=r.result;r.readAsDataURL(f)}
+function saveCollege(){let v=id=>document.getElementById(id).value.trim();data.college={...data.college,name:v("cCollege"),department:v("cDept"),academicYear:v("cYear"),faculty:v("cFaculty"),hod:v("cHOD"),university:v("cUniversity")};if(pendingLogo)data.college.logo=pendingLogo;save();render();closeM("collegeModal");toast("College configuration saved.")}
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")}));
+document.getElementById("attDate").value=new Date().toISOString().slice(0,10);
+document.getElementById("attSession").addEventListener("change",renderAttendance);document.getElementById("attDate").addEventListener("change",renderAttendance);
+render();
+</script>
+</body>
+</html>

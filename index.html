@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Management with Git | Academic Dashboard</title>
+<style>
+:root{--p:#1d4ed8;--p2:#2563eb;--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;--b:#dbe3ef;--g:#15803d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 Segoe UI,Arial,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--b);position:sticky;top:0;z-index:10;box-shadow:0 2px 12px #0001}
+.head{max-width:1250px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border:1px solid var(--b);border-radius:11px;display:grid;place-items:center;overflow:hidden;flex:none}
+.logo img{width:100%;height:100%;object-fit:contain;display:none}.logo span{font-weight:900;color:var(--p);font-size:10px}
+.brand{flex:1}.brand h1{margin:0;font-size:20px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.btn{border:1px solid var(--b);background:#fff;padding:8px 11px;border-radius:8px;font-weight:800;cursor:pointer}.btn.primary{background:var(--p);border-color:var(--p);color:#fff}
+main{max-width:1250px;margin:auto;padding:28px 20px 50px}
+.hero{background:linear-gradient(135deg,#eff6ff,#fff);border:1px solid #bfdbfe;border-radius:18px;padding:26px;margin-bottom:20px}
+.hero h2{margin:0;font-size:28px}.hero p{color:var(--muted);max-width:850px}
+.meta{display:flex;gap:8px;flex-wrap:wrap}.pill{background:#dbeafe;color:#1e40af;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--b);border-radius:14px;padding:18px;box-shadow:0 8px 25px #0f172a0a;transition:.15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 30px #0f172a15}.num{font-size:12px;color:var(--p);font-weight:900}.card h3{margin:5px 0}.card p{color:var(--muted);font-size:12px;min-height:55px}.go{display:inline-block;text-decoration:none;background:#eff6ff;color:#1d4ed8;padding:8px 11px;border-radius:8px;font-weight:900;font-size:12px}
+.section{margin-top:24px}.section h2{font-size:18px}.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{background:#fff;border:1px solid var(--b);border-radius:14px;padding:17px}.panel h3{margin-top:0}.panel li{margin:6px 0}.note{border-left:4px solid var(--p);background:#eff6ff;padding:11px 13px;border-radius:7px;font-size:12px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:25px}
+@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.cols{grid-template-columns:1fr}}@media(max-width:560px){.grid{grid-template-columns:1fr}.head{padding:10px 12px}.hero h2{font-size:22px}main{padding:18px 12px 35px}}
+@media print{header,.btn{display:none}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="head">
+<div class="logo"><img id="logoImg"><span id="logoText">LOGO</span></div>
+<div class="brand"><h1 id="collegeName">College Name</h1><p id="courseLine">Project Management with Git · 1BCSL307A · Semester III</p></div>
+<button class="btn" onclick="setCollege()">College</button>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<h2>Project Management with Git</h2>
+<p>Academic management dashboard for the six-phase course workflow. Use the modules for syllabus reference, teaching, attendance, assessment, CO/PO/PSO attainment, the complete laboratory manual, and settings/data management.</p>
+<div class="meta"><span class="pill">1BCSL307A</span><span class="pill">Semester III</span><span class="pill">Practical</span><span class="pill">12 Experiments</span><span class="pill">Git + GitHub</span></div>
+</section>
+
+<section class="grid">
+<div class="card"><div class="num">PHASE 1</div><h3>Course & Syllabus</h3><p>Course details, syllabus, COs, course structure and academic reference information.</p><a class="go" href="01_Course_Syllabus.html">Open Phase 1 →</a></div>
+<div class="card"><div class="num">PHASE 2</div><h3>Teaching & Students</h3><p>Teaching workflow, student records, attendance and practical-class management.</p><a class="go" href="02_Teaching_Student_Management.html">Open Phase 2 →</a></div>
+<div class="card"><div class="num">PHASE 3</div><h3>Assessment & Rubrics</h3><p>CIE assessment, rubrics, practical evaluation and evidence-oriented assessment support.</p><a class="go" href="03_Assessment_Rubrics.html">Open Phase 3 →</a></div>
+<div class="card"><div class="num">PHASE 4</div><h3>CO–PO/PSO & Attainment</h3><p>Outcome mapping, attainment calculations, justification and accreditation-oriented evidence.</p><a class="go" href="04_CO_PO_Attainment.html">Open Phase 4 →</a></div>
+<div class="card"><div class="num">PHASE 5</div><h3>Complete Laboratory Manual</h3><p>All 12 experiments with teaching explanation, commands, journal-writing format, observations, results and viva preparation.</p><a class="go" href="05_Manuals_Reports.html">Open Phase 5 →</a></div>
+<div class="card"><div class="num">PHASE 6</div><h3>Settings, Data & AI</h3><p>College configuration, data backup/import, validation and AI-assisted academic drafting.</p><a class="go" href="06_Settings_Data_AI.html">Open Phase 6 →</a></div>
+</section>
+
+<section class="section cols">
+<div class="panel">
+<h3>Recommended workflow</h3>
+<ol>
+<li>Configure the college and course information.</li>
+<li>Review the syllabus and course outcomes.</li>
+<li>Prepare teaching and student/attendance records.</li>
+<li>Conduct experiments and record assessment evidence.</li>
+<li>Use the complete manual for faculty teaching and student journals.</li>
+<li>Generate CO/PO/PSO evidence and reports.</li>
+<li>Back up the local data periodically.</li>
+</ol>
+</div>
+<div class="panel">
+<h3>GitHub Pages deployment</h3>
+<p>Keep this <strong>index.html</strong> and the six phase HTML files in the same repository directory.</p>
+<div class="note"><strong>Important:</strong> GitHub Pages hosts the static HTML files. Browser LocalStorage is device/browser-specific, so faculty and student data is not automatically shared between different computers.</div>
+</div>
+</section>
+
+<section class="section">
+<div class="panel">
+<h3>Source and academic-use note</h3>
+<p>The course structure and experiment list should be maintained from the college's applicable syllabus/regulations. Detailed command demonstrations and journal guidance in Phase 5 are instructional expansions, not claims that every command or wording is verbatim VTU text.</p>
+</div>
+</section>
+</main>
+<footer>Project Management with Git · 1BCSL307A · GitHub Pages-ready static academic system</footer>
+
+<script>
+const KEY="pmgit_index_settings_v1";
+let s={college:"College Name",logo:""};
+try{s=JSON.parse(localStorage.getItem(KEY))||s}catch(e){}
+function apply(){document.getElementById("collegeName").textContent=s.college;document.getElementById("courseLine").textContent="Project Management with Git · 1BCSL307A · Semester III";if(s.logo){logoImg.src=s.logo;logoImg.style.display="block";logoText.style.display="none"}}
+function setCollege(){let n=prompt("Enter college name:",s.college);if(n===null)return;n=n.trim();if(!n)n="College Name";s.college=n;localStorage.setItem(KEY,JSON.stringify(s));apply()}
+apply();
+</script>
+</body>
+</html>

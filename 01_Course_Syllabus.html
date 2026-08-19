@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phase 1 | Project Management with Git | 1BCSL307A</title>
+<style>
+:root{
+  --primary:#1d4ed8; --primary-dark:#163ea8; --secondary:#0f766e;
+  --bg:#f4f7fb; --card:#fff; --text:#172033; --muted:#64748b;
+  --border:#dbe3ef; --success:#15803d; --warning:#b45309; --danger:#b91c1c;
+  --shadow:0 8px 24px rgba(15,23,42,.07); --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app-header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.header-main{display:flex;align-items:center;gap:16px;padding:12px 22px;max-width:1600px;margin:auto}
+.logo-wrap{width:58px;height:58px;border:1px solid var(--border);border-radius:12px;display:grid;place-items:center;overflow:hidden;background:#f8fafc;flex:none}
+.logo-wrap img{width:100%;height:100%;object-fit:contain;display:none}
+.logo-placeholder{font-weight:800;color:var(--primary);font-size:12px;text-align:center}
+.header-title{min-width:0;flex:1}
+.header-title h1{font-size:20px;margin:0 0 2px}
+.header-title p{margin:0;color:var(--muted);font-size:13px}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--border);background:#fff;color:var(--text);padding:9px 12px;border-radius:9px;font-weight:600}
+.btn:hover{background:#f8fafc}
+.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn.primary:hover{background:var(--primary-dark)}
+.btn.success{background:var(--success);color:#fff;border-color:var(--success)}
+.btn.danger{color:#fff;background:var(--danger);border-color:var(--danger)}
+.btn.small{padding:6px 9px;font-size:12px}
+.phase-nav{display:flex;gap:5px;overflow:auto;padding:7px 22px;background:#f8fafc;border-top:1px solid #eef2f7}
+.phase-nav a{white-space:nowrap;text-decoration:none;color:#475569;padding:8px 12px;border-radius:8px;font-size:13px;font-weight:700}
+.phase-nav a.active{background:#dbeafe;color:#1d4ed8}
+.phase-nav a.future{opacity:.55}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1600px;margin:auto}
+.sidebar{position:sticky;top:119px;height:calc(100vh - 119px);overflow:auto;padding:18px 14px;border-right:1px solid var(--border);background:#fff}
+.sidebar h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin:12px 10px 7px}
+.sidebar a{display:block;text-decoration:none;color:#475569;padding:9px 11px;border-radius:8px;font-size:14px}
+.sidebar a:hover,.sidebar a.active{background:#eff6ff;color:var(--primary);font-weight:700}
+.content{padding:24px;min-width:0}
+.section{margin-bottom:28px;scroll-margin-top:135px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:13px}
+.section-head h2{margin:0;font-size:22px}
+.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.grid{display:grid;gap:14px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.stat{padding:16px;border-radius:12px;background:#f8fafc;border:1px solid var(--border)}
+.stat .label{font-size:12px;color:var(--muted)}
+.stat .value{font-size:24px;font-weight:800;margin-top:4px}
+label{display:block;font-size:12px;font-weight:700;color:#475569;margin-bottom:5px}
+input,textarea,select{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:9px 10px;background:#fff;color:var(--text);outline:none}
+input:focus,textarea:focus,select:focus{border-color:#60a5fa;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+textarea{min-height:100px;resize:vertical}
+.form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.form-row.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.form-row.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.field{margin-bottom:12px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.search{max-width:330px}
+.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:10px}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th,td{padding:10px 11px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:13px}
+th{background:#f8fafc;color:#475569;font-size:12px}
+tr:last-child td{border-bottom:0}
+.badge{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#e0e7ff;color:#3730a3}
+.badge.green{background:#dcfce7;color:#166534}
+.badge.amber{background:#fef3c7;color:#92400e}
+.badge.gray{background:#f1f5f9;color:#475569}
+.experiment-card{border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden}
+.exp-head{display:flex;gap:12px;align-items:center;padding:14px 16px;background:#f8fafc;border-bottom:1px solid var(--border)}
+.exp-no{width:36px;height:36px;border-radius:9px;background:#dbeafe;color:#1d4ed8;display:grid;place-items:center;font-weight:900}
+.exp-title{flex:1}.exp-title h3{margin:0;font-size:16px}.exp-title p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.exp-body{padding:16px}
+.exp-actions{display:flex;gap:6px;flex-wrap:wrap}
+.co-chip{display:inline-block;margin:3px 4px 3px 0;padding:4px 7px;border-radius:6px;background:#ecfeff;color:#155e75;font-size:11px;font-weight:800}
+.resource{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border)}
+.resource:last-child{border-bottom:0}
+.resource strong{display:block}
+.resource span{color:var(--muted);font-size:12px}
+.notice{padding:12px 14px;border-left:4px solid var(--primary);background:#eff6ff;border-radius:8px;font-size:13px}
+.warning{border-left-color:var(--warning);background:#fffbeb}
+.success-note{border-left-color:var(--success);background:#f0fdf4}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+.footer{padding:25px;text-align:center;color:#64748b;font-size:12px}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-box{background:#fff;width:min(900px,100%);max-height:90vh;overflow:auto;border-radius:16px;box-shadow:0 25px 60px rgba(0,0,0,.2)}
+.modal-head{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal-head h3{margin:0}
+.modal-body{padding:18px}
+.modal-foot{padding:13px 18px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.toast{position:fixed;right:18px;bottom:18px;background:#172033;color:#fff;padding:11px 15px;border-radius:9px;z-index:100;display:none;font-size:13px}
+.print-only{display:none}
+@media(max-width:1050px){
+  .layout{grid-template-columns:1fr}.sidebar{display:none}.content{padding:16px}
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .header-main{padding:10px 12px}.header-actions .btn:nth-child(n+2){display:none}
+  .header-title h1{font-size:16px}.phase-nav{padding:6px 10px}
+  .grid-2,.grid-3,.grid-4,.form-row,.form-row.three,.form-row.four{grid-template-columns:1fr}
+  .content{padding:12px}.card{padding:14px}
+}
+@media print{
+  body{background:#fff}.app-header,.sidebar,.header-actions,.phase-nav,.no-print,.modal,.toast{display:none!important}
+  .layout{display:block}.content{padding:0}.card{box-shadow:none;border:1px solid #ccc}
+  .section{break-inside:auto}.print-only{display:block}
+  .experiment-card{break-inside:avoid;margin-bottom:12px}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-main">
+    <div class="logo-wrap" title="Upload college logo from Settings">
+      <img id="collegeLogo" alt="College logo">
+      <div id="logoPlaceholder" class="logo-placeholder">LOGO</div>
+    </div>
+    <div class="header-title">
+      <h1 id="headerCollege">College Name</h1>
+      <p id="headerCourse">Project Management (with Git) · 1BCSL307A · Semester III · Scheme 2025</p>
+    </div>
+    <div class="header-actions no-print">
+      <button class="btn small" onclick="openSettings()">College Setup</button>
+      <button class="btn small" onclick="exportData()">Export Data</button>
+      <button class="btn small" onclick="document.getElementById('importFile').click()">Import Data</button>
+      <button class="btn primary small" onclick="window.print()">Print</button>
+      <input id="importFile" type="file" accept=".json" hidden onchange="importData(event)">
+    </div>
+  </div>
+  <nav class="phase-nav no-print">
+    <a class="active" href="01_Course_Syllabus.html">Phase 1 · Course & Syllabus</a>
+    <a class="future" href="02_Teaching_Student_Management.html">Phase 2 · Teaching & Students</a>
+    <a class="future" href="03_Assessment_Rubrics.html">Phase 3 · Assessment</a>
+    <a class="future" href="04_CO_PO_Attainment.html">Phase 4 · CO/PO/PSO</a>
+    <a class="future" href="05_Manuals_Reports.html">Phase 5 · Manuals & Reports</a>
+    <a class="future" href="06_Settings_Data_AI.html">Phase 6 · Settings & AI</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar no-print">
+    <h3>Phase 1</h3>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#course">Course Information</a>
+    <a href="#objectives">Objectives & COs</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#resources">Learning Resources</a>
+    <a href="#compliance">Course Rules</a>
+    <h3>Data</h3>
+    <a href="#customization">College Customization</a>
+    <a href="#backup">Data Backup</a>
+  </aside>
+
+  <main class="content">
+
+    <section id="dashboard" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Phase 1 Dashboard</h2>
+          <p>Course and syllabus foundation for Project Management with Git.</p>
+        </div>
+        <span class="badge green">Phase 1 Active</span>
+      </div>
+
+      <div class="grid grid-4">
+        <div class="stat"><div class="label">Course Code</div><div class="value" id="statCode">1BCSL307A</div></div>
+        <div class="stat"><div class="label">Experiments</div><div class="value" id="statExperiments">12</div></div>
+        <div class="stat"><div class="label">Course Outcomes</div><div class="value" id="statCO">5</div></div>
+        <div class="stat"><div class="label">Practical Hours</div><div class="value" id="statHours">28</div></div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:14px">
+        <div class="card">
+          <h3 style="margin-top:0">Phase 1 Scope</h3>
+          <p>This module manages the course master data, syllabus, course outcomes, experiments, learning resources and course-level configuration. It is designed so later phases can reuse the same data.</p>
+          <div class="notice success-note">The default values below are based on the uploaded VTU Draft Syllabus for 1BCSL307A, Scheme 2025.</div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Quick Actions</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn primary" onclick="openCourseEditor()">Edit Course</button>
+            <button class="btn" onclick="openExperimentEditor()">Add Experiment</button>
+            <button class="btn" onclick="openSettings()">College Setup</button>
+            <button class="btn" onclick="exportData()">Backup JSON</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="course" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Course Information</h2>
+          <p>Editable master data used by all future phases and reports.</p>
+        </div>
+        <button class="btn primary no-print" onclick="openCourseEditor()">Edit</button>
+      </div>
+      <div class="card">
+        <div class="grid grid-4">
+          <div><label>Course Name</label><strong id="courseName">Project Management (with Git)</strong></div>
+          <div><label>Course Code</label><strong id="courseCode">1BCSL307A</strong></div>
+          <div><label>Scheme</label><strong id="courseScheme">2025</strong></div>
+          <div><label>Semester</label><strong id="courseSemester">3</strong></div>
+          <div><label>Course Type</label><strong id="courseType">AEC (Laboratory)</strong></div>
+          <div><label>Teaching Hours / Week</label><strong id="courseTH">0:0:2</strong></div>
+          <div><label>Credits</label><strong id="courseCredits">1</strong></div>
+          <div><label>Practical Hours</label><strong id="courseHours">28</strong></div>
+          <div><label>CIE Marks</label><strong id="courseCIE">50</strong></div>
+          <div><label>SEE Marks</label><strong id="courseSEE">50</strong></div>
+          <div><label>Total Marks</label><strong id="courseTotal">100</strong></div>
+          <div><label>SEE Exam Duration</label><strong id="courseExam">03 Hours</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="objectives" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Course Objectives & Course Outcomes</h2>
+          <p>COs are stored as structured data so later assessment and attainment phases can reuse them.</p>
+        </div>
+        <button class="btn primary no-print" onclick="openCOEditor()">Edit COs</button>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-top:0">Course Skill Set / Outcomes</h3>
+          <div id="coList"></div>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Objectives</h3>
+          <div id="objectiveList"></div>
+          <div class="notice warning" style="margin-top:12px">The uploaded syllabus explicitly provides the five course outcomes. It does not provide a separate numbered list of course objectives in the supplied four-page draft; therefore this area remains editable rather than inventing objectives.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiments" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Set of Experiments</h2>
+          <p>12 experiments from the supplied VTU draft syllabus. Edit, reorder or add experiments as the syllabus evolves.</p>
+        </div>
+        <button class="btn primary no-print" onclick="openExperimentEditor()">+ Add Experiment</button>
+      </div>
+
+      <div class="toolbar no-print">
+        <input id="experimentSearch" class="search" placeholder="Search experiments..." oninput="renderExperiments()">
+        <div>
+          <button class="btn small" onclick="resetExperiments()">Restore Syllabus Experiments</button>
+        </div>
+      </div>
+      <div id="experimentList" class="grid" style="grid-template-columns:1fr"></div>
+    </section>
+
+    <section id="resources" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Learning Resources</h2>
+          <p>Textbooks, reference manual and e-resources listed in the uploaded syllabus.</p>
+        </div>
+        <button class="btn primary no-print" onclick="openResourceEditor()">+ Add Resource</button>
+      </div>
+      <div class="card">
+        <div id="resourceList"></div>
+      </div>
+    </section>
+
+    <section id="compliance" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Course Rules & Assessment Baseline</h2>
+          <p>Course-specific rules recorded from the uploaded syllabus.</p>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-top:0">Assessment Structure</h3>
+          <ul>
+            <li>CIE: 50 marks</li>
+            <li>SEE: 50 marks</li>
+            <li>Total: 100 marks</li>
+            <li>CIE report component: 30 marks after scaling</li>
+            <li>Laboratory test: 20 marks after scaling</li>
+            <li>Laboratory test duration: 03 hours</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Eligibility / Passing Rules</h3>
+          <ul>
+            <li>CIE minimum for SEE eligibility: 20/50</li>
+            <li>SEE minimum: 18/50</li>
+            <li>Combined minimum for successful course completion: 40/100</li>
+          </ul>
+        </div>
+      </div>
+      <div class="notice warning" style="margin-top:14px">
+        Compliance note: this page records the course-specific requirements explicitly present in the uploaded VTU draft syllabus. NBA-related institutional fields and documentation workflows will be configurable in Phase 4 and Phase 6 rather than being presented as official VTU requirements unless supported by the source.
+      </div>
+    </section>
+
+    <section id="customization" class="section">
+      <div class="section-head">
+        <div>
+          <h2>College Customization</h2>
+          <p>Set college branding now; later phases will reuse these settings.</p>
+        </div>
+        <button class="btn primary no-print" onclick="openSettings()">Configure</button>
+      </div>
+      <div class="card">
+        <div class="grid grid-3">
+          <div><label>College</label><strong id="collegeDisplay">College Name</strong></div>
+          <div><label>Department</label><strong id="departmentDisplay">Department Name</strong></div>
+          <div><label>Academic Year</label><strong id="academicYearDisplay">2025-26</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="backup" class="section">
+      <div class="section-head">
+        <div>
+          <h2>Data Backup & Restore</h2>
+          <p>Keep a portable JSON backup of course configuration, experiments, COs and resources.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="grid grid-2">
+          <div>
+            <h3 style="margin-top:0">Export</h3>
+            <p>Downloads the current Phase 1 data as JSON. This is useful before editing the syllabus or moving the course file to another computer.</p>
+            <button class="btn primary" onclick="exportData()">Download JSON Backup</button>
+          </div>
+          <div>
+            <h3 style="margin-top:0">Restore</h3>
+            <p>Import a previously exported JSON file. Existing Phase 1 data will be replaced after confirmation.</p>
+            <button class="btn" onclick="document.getElementById('importFile').click()">Import JSON Backup</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Phase 1 · Project Management (with Git) · 1BCSL307A · Built as an editable academic course-management interface.
+    </div>
+  </main>
+</div>
+
+<!-- Course Modal -->
+<div id="courseModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Edit Course Information</h3><button class="btn small" onclick="closeModal('courseModal')">Close</button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="field"><label>Course Name</label><input id="fCourseName"></div>
+        <div class="field"><label>Course Code</label><input id="fCourseCode"></div>
+      </div>
+      <div class="form-row four">
+        <div class="field"><label>Scheme</label><input id="fScheme"></div>
+        <div class="field"><label>Semester</label><input id="fSemester" type="number"></div>
+        <div class="field"><label>Credits</label><input id="fCredits" type="number"></div>
+        <div class="field"><label>Practical Hours</label><input id="fHours" type="number"></div>
+      </div>
+      <div class="form-row four">
+        <div class="field"><label>Course Type</label><input id="fType"></div>
+        <div class="field"><label>L:T:P</label><input id="fTH"></div>
+        <div class="field"><label>CIE Marks</label><input id="fCIE" type="number"></div>
+        <div class="field"><label>SEE Marks</label><input id="fSEE" type="number"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Total Marks</label><input id="fTotal" type="number"></div>
+        <div class="field"><label>SEE Exam Duration</label><input id="fExam"></div>
+      </div>
+    </div>
+    <div class="modal-foot"><button class="btn" onclick="closeModal('courseModal')">Cancel</button><button class="btn primary" onclick="saveCourse()">Save</button></div>
+  </div>
+</div>
+
+<!-- CO Modal -->
+<div id="coModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Edit Course Outcomes</h3><button class="btn small" onclick="closeModal('coModal')">Close</button></div>
+    <div class="modal-body">
+      <div id="coEditor"></div>
+      <button class="btn no-print" onclick="addCOField()">+ Add CO</button>
+    </div>
+    <div class="modal-foot"><button class="btn" onclick="closeModal('coModal')">Cancel</button><button class="btn primary" onclick="saveCOs()">Save COs</button></div>
+  </div>
+</div>
+
+<!-- Experiment Modal -->
+<div id="experimentModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="expModalTitle">Add Experiment</h3><button class="btn small" onclick="closeModal('experimentModal')">Close</button></div>
+    <div class="modal-body">
+      <input id="editExpIndex" type="hidden" value="-1">
+      <div class="form-row">
+        <div class="field"><label>Experiment Number</label><input id="fExpNo" type="number"></div>
+        <div class="field"><label>Title</label><input id="fExpTitle"></div>
+      </div>
+      <div class="field"><label>Category</label><input id="fExpCategory"></div>
+      <div class="field"><label>Experiment Statement</label><textarea id="fExpStatement"></textarea></div>
+      <div class="form-row">
+        <div class="field"><label>CO Mapping (e.g. CO1, CO2)</label><input id="fExpCO"></div>
+        <div class="field"><label>Suggested Hours</label><input id="fExpHours" type="number" min="0"></div>
+      </div>
+    </div>
+    <div class="modal-foot"><button class="btn" onclick="closeModal('experimentModal')">Cancel</button><button class="btn primary" onclick="saveExperiment()">Save</button></div>
+  </div>
+</div>
+
+<!-- Resource Modal -->
+<div id="resourceModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Add Learning Resource</h3><button class="btn small" onclick="closeModal('resourceModal')">Close</button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="field"><label>Type</label><select id="fResType"><option>Textbook</option><option>Reference Book / Manual</option><option>Web / e-Resource</option></select></div>
+        <div class="field"><label>Title</label><input id="fResTitle"></div>
+      </div>
+      <div class="field"><label>Author / Provider</label><input id="fResAuthor"></div>
+      <div class="field"><label>URL</label><input id="fResURL"></div>
+    </div>
+    <div class="modal-foot"><button class="btn" onclick="closeModal('resourceModal')">Cancel</button><button class="btn primary" onclick="saveResource()">Add Resource</button></div>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>College Setup</h3><button class="btn small" onclick="closeModal('settingsModal')">Close</button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="field"><label>College Name</label><input id="fCollege"></div>
+        <div class="field"><label>Department</label><input id="fDepartment"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Academic Year</label><input id="fAcademicYear"></div>
+        <div class="field"><label>University</label><input id="fUniversity"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Faculty Name</label><input id="fFaculty"></div>
+        <div class="field"><label>HOD Name</label><input id="fHOD"></div>
+      </div>
+      <div class="field"><label>College Logo</label><input id="fLogo" type="file" accept="image/*" onchange="previewLogo(event)"></div>
+      <div class="notice">Logo is stored locally in this browser for this course file. For portability, export the data and keep a copy of the logo if your workflow requires it.</div>
+    </div>
+    <div class="modal-foot"><button class="btn" onclick="closeModal('settingsModal')">Cancel</button><button class="btn primary" onclick="saveSettings()">Save Settings</button></div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const STORAGE_KEY = "pmgit_phase1_v1";
+
+const syllabusExperiments = [
+ {number:1,title:"Setting Up and Basic Commands",category:"Setting Up and Basic Commands",statement:"Initialize a new Git repository in a directory. Create a new file and add it to the staging area, and commit the changes with an appropriate commit message.",co:"CO1",hours:2},
+ {number:2,title:"Creating and Managing Branches",category:"Branching",statement:"Create a new branch named \"feature-branch.\" Switch to the \"master\" branch. Merge the \"feature-branch\" into \"master.\"",co:"CO2",hours:2},
+ {number:3,title:"Creating and Managing Branches",category:"Branching / Stash",statement:"Write the commands to stash your changes, switch branches, and then apply the stashed changes.",co:"CO2",hours:2},
+ {number:4,title:"Collaboration and Remote Repositories",category:"Remote Repositories",statement:"Clone a remote Git repository to your local machine.",co:"CO3",hours:2},
+ {number:5,title:"Collaboration and Remote Repositories",category:"Remote Repositories / Rebase",statement:"Fetch the latest changes from a remote repository and rebase your local branch onto the updated remote branch.",co:"CO3",hours:2},
+ {number:6,title:"Collaboration and Remote Repositories",category:"Remote Repositories / Merge",statement:"Write the command to merge \"feature-branch\" into \"master\" while providing a custom commit message for the merge.",co:"CO3",hours:2},
+ {number:7,title:"Git Tags and Releases",category:"Tags and Releases",statement:"Write the command to create a lightweight Git tag named \"v1.0\" for a commit in your local repository.",co:"CO4",hours:2},
+ {number:8,title:"Advanced Git Operations",category:"Advanced Git Operations",statement:"Write the command to cherry-pick a range of commits from \"source-branch\" to the current branch.",co:"CO4",hours:2},
+ {number:9,title:"Analysing and Changing Git History",category:"Git History",statement:"Given a commit ID, how would you use Git to view the details of that specific commit, including the author, date, and commit message?",co:"CO5",hours:2},
+ {number:10,title:"Analysing and Changing Git History",category:"Git History",statement:"Write the Git command to display all commits made by the author \"JohnDoe\" between “January 1, 2025” and “December 31, 2025.”",co:"CO5",hours:2},
+ {number:11,title:"Analysing and Changing Git History",category:"Git History",statement:"Write the Git command to display the last five commits in the repository's history.",co:"CO5",hours:2},
+ {number:12,title:"Analysing and Changing Git History",category:"Git History",statement:"Write the Git command to undo the changes introduced by the commit with the ID \"abc123\".",co:"CO5",hours:2}
+];
+
+const defaultData = {
+ college:{name:"College Name",department:"Department Name",academicYear:"2025-26",university:"Visvesvaraya Technological University",faculty:"",hod:"",logo:""},
+ course:{
+  name:"Project Management (with Git)",code:"1BCSL307A",scheme:"2025",semester:3,
+  type:"AEC (Laboratory)",teachingHours:"0:0:2",credits:1,practicalHours:28,
+  cie:50,see:50,total:100,examDuration:"03 Hours"
+ },
+ objectives:[],
+ cos:[
+  {id:"CO1",text:"Demonstrate the use of basic Git repository commands for version control operations."},
+  {id:"CO2",text:"Implement branch management strategies for collaborative software development."},
+  {id:"CO3",text:"Apply collaboration techniques using remote repositories and distributed version control systems."},
+  {id:"CO4",text:"Configure Git tags, releases, and advanced Git operations for effective project management."},
+  {id:"CO5",text:"Modify Git history to maintain repository integrity and support project requirements."}
+ ],
+ experiments:JSON.parse(JSON.stringify(syllabusExperiments)),
+ resources:[
+  {type:"Textbook",title:"Version Control with Git, 3rd Edition",author:"Prem Kumar Ponuthorai, Jon Loeliger; O'Reilly Media, Inc.; Released October 2022",url:""},
+  {type:"Textbook",title:"Pro Git book",author:"Scott Chacon and Ben Straub; Apress",url:"https://git-scm.com/book/en/v2"},
+  {type:"Reference Book / Manual",title:"Git Pocket Guide",author:"Richard E. Silverman; O'Reilly",url:"https://www.oreilly.com/library/view/git-pocket-guide/9781449327507/"},
+  {type:"Web / e-Resource",title:"Git and GitHub Fundamentals",author:"Infosys Springboard",url:"https://infyspringboard.onwingspan.com/web/en/app/toc/lex_auth_013094443347369984782_shared/overview"},
+  {type:"Web / e-Resource",title:"Version Control Using Git",author:"Infosys Springboard",url:"https://infyspringboard.onwingspan.com/web/en/login?ref=%2Fapp%2Ftoc%2Flex_auth_01330134712177459211926_share%2Foverview"},
+  {type:"Web / e-Resource",title:"Pro Git",author:"Official Git Documentation",url:"https://git-scm.com/book/en/v2"},
+  {type:"Web / e-Resource",title:"Introduction to Git and GitHub",author:"Coursera / Google",url:"https://www.coursera.org/learn/introduction-git-github"}
+ ]
+};
+
+let data = loadData();
+
+function loadData(){
+ try{
+   const raw=localStorage.getItem(STORAGE_KEY);
+   if(raw){
+     const parsed=JSON.parse(raw);
+     return {...defaultData,...parsed,course:{...defaultData.course,...(parsed.course||{})},college:{...defaultData.college,...(parsed.college||{})}};
+   }
+ }catch(e){}
+ return JSON.parse(JSON.stringify(defaultData));
+}
+function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}
+function toast(msg){
+ const t=document.getElementById("toast"); t.textContent=msg; t.style.display="block";
+ clearTimeout(window.__toast); window.__toast=setTimeout(()=>t.style.display="none",2200);
+}
+function closeModal(id){document.getElementById(id).classList.remove("open")}
+function openModal(id){document.getElementById(id).classList.add("open")}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function linkify(url){
+ if(!url) return "";
+ const safe=esc(url);
+ return `<a href="${safe}" target="_blank" rel="noopener" class="btn small">Open</a>`;
+}
+
+function render(){
+ renderHeader();
+ renderCourse();
+ renderCOs();
+ renderExperiments();
+ renderResources();
+}
+function renderHeader(){
+ document.getElementById("headerCollege").textContent=data.college.name||"College Name";
+ document.getElementById("headerCourse").textContent=`${data.course.name} · ${data.course.code} · Semester ${data.course.semester} · Scheme ${data.course.scheme}`;
+ const img=document.getElementById("collegeLogo"), ph=document.getElementById("logoPlaceholder");
+ if(data.college.logo){img.src=data.college.logo;img.style.display="block";ph.style.display="none"}
+ else{img.style.display="none";ph.style.display="block"}
+ document.getElementById("collegeDisplay").textContent=data.college.name||"College Name";
+ document.getElementById("departmentDisplay").textContent=data.college.department||"Department Name";
+ document.getElementById("academicYearDisplay").textContent=data.college.academicYear||"";
+}
+function renderCourse(){
+ const c=data.course;
+ const map={
+  courseName:c.name,courseCode:c.code,courseScheme:c.scheme,courseSemester:c.semester,
+  courseType:c.type,courseTH:c.teachingHours,courseCredits:c.credits,courseHours:c.practicalHours,
+  courseCIE:c.cie,courseSEE:c.see,courseTotal:c.total,courseExam:c.examDuration,
+  statCode:c.code,statExperiments:data.experiments.length,statCO:data.cos.length,statHours:c.practicalHours
+ };
+ Object.entries(map).forEach(([id,val])=>document.getElementById(id).textContent=val);
+ document.getElementById("objectiveList").innerHTML=data.objectives.length
+  ? `<ol>${data.objectives.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`
+  : `<div class="empty">No separate course-objective list is supplied in the source document. Add institutional objectives if required.</div>`;
+}
+function renderCOs(){
+ document.getElementById("coList").innerHTML=data.cos.map(co=>`
+  <div style="padding:11px 0;border-bottom:1px solid var(--border)">
+    <span class="badge">${esc(co.id)}</span>
+    <div style="margin-top:5px">${esc(co.text)}</div>
+  </div>`).join("");
+}
+function renderExperiments(){
+ const q=(document.getElementById("experimentSearch")?.value||"").toLowerCase();
+ const list=data.experiments.filter(e=>(`${e.number} ${e.title} ${e.category} ${e.statement}`).toLowerCase().includes(q));
+ const el=document.getElementById("experimentList");
+ if(!list.length){el.innerHTML=`<div class="card empty">No matching experiments.</div>`;return}
+ el.innerHTML=list.map(e=>{
+  const idx=data.experiments.indexOf(e);
+  return `<article class="experiment-card">
+   <div class="exp-head">
+    <div class="exp-no">${esc(e.number)}</div>
+    <div class="exp-title"><h3>${esc(e.title)}</h3><p>${esc(e.category)}</p></div>
+    <div class="exp-actions no-print">
+      <button class="btn small" onclick="editExperiment(${idx})">Edit</button>
+      <button class="btn small" onclick="moveExperiment(${idx},-1)">↑</button>
+      <button class="btn small" onclick="moveExperiment(${idx},1)">↓</button>
+      <button class="btn small" onclick="deleteExperiment(${idx})">Delete</button>
+    </div>
+   </div>
+   <div class="exp-body">
+    <p style="margin-top:0">${esc(e.statement)}</p>
+    <span class="co-chip">${esc(e.co||"CO not mapped")}</span>
+    <span class="badge gray">${esc(e.hours||0)} practical hour(s)</span>
+   </div>
+  </article>`;
+ }).join("");
+}
+function renderResources(){
+ document.getElementById("resourceList").innerHTML=data.resources.map((r,i)=>`
+  <div class="resource">
+    <div><span class="badge gray">${esc(r.type)}</span><strong style="margin-top:5px">${esc(r.title)}</strong><span>${esc(r.author)}</span></div>
+    <div style="display:flex;gap:6px;align-items:center">${linkify(r.url)}<button class="btn small no-print" onclick="deleteResource(${i})">Delete</button></div>
+  </div>`).join("");
+}
+
+function openCourseEditor(){
+ const c=data.course;
+ [["fCourseName",c.name],["fCourseCode",c.code],["fScheme",c.scheme],["fSemester",c.semester],["fCredits",c.credits],["fHours",c.practicalHours],
+ ["fType",c.type],["fTH",c.teachingHours],["fCIE",c.cie],["fSEE",c.see],["fTotal",c.total],["fExam",c.examDuration]]
+ .forEach(([id,v])=>document.getElementById(id).value=v);
+ openModal("courseModal");
+}
+function saveCourse(){
+ const g=id=>document.getElementById(id).value.trim();
+ data.course={...data.course,name:g("fCourseName"),code:g("fCourseCode"),scheme:g("fScheme"),semester:Number(g("fSemester")),
+ credits:Number(g("fCredits")),practicalHours:Number(g("fHours")),type:g("fType"),teachingHours:g("fTH"),
+ cie:Number(g("fCIE")),see:Number(g("fSEE")),total:Number(g("fTotal")),examDuration:g("fExam")};
+ saveData();render();closeModal("courseModal");toast("Course information saved.");
+}
+
+function openCOEditor(){
+ document.getElementById("coEditor").innerHTML=data.cos.map((co,i)=>coField(co,i)).join("");
+ openModal("coModal");
+}
+function coField(co,i){
+ return `<div class="card" style="margin-bottom:10px;padding:12px">
+   <div class="form-row">
+    <div class="field"><label>CO Code</label><input class="co-id" value="${esc(co.id)}"></div>
+    <div class="field"><label>Description</label><input class="co-text" value="${esc(co.text)}"></div>
+   </div>
+   <button class="btn small no-print" onclick="this.parentElement.remove()">Remove</button>
+  </div>`;
+}
+function addCOField(){
+ const wrap=document.getElementById("coEditor");
+ const div=document.createElement("div"); div.innerHTML=coField({id:`CO${wrap.children.length+1}`,text:""},wrap.children.length); wrap.appendChild(div.firstElementChild);
+}
+function saveCOs(){
+ const boxes=[...document.querySelectorAll("#coEditor .card")];
+ data.cos=boxes.map(b=>({id:b.querySelector(".co-id").value.trim(),text:b.querySelector(".co-text").value.trim()})).filter(x=>x.id&&x.text);
+ saveData();render();closeModal("coModal");toast("Course outcomes saved.");
+}
+
+function openExperimentEditor(){
+ document.getElementById("editExpIndex").value=-1;
+ document.getElementById("expModalTitle").textContent="Add Experiment";
+ ["fExpNo","fExpTitle","fExpCategory","fExpStatement","fExpCO","fExpHours"].forEach(id=>document.getElementById(id).value="");
+ openModal("experimentModal");
+}
+function editExperiment(idx){
+ const e=data.experiments[idx];
+ document.getElementById("editExpIndex").value=idx;
+ document.getElementById("expModalTitle").textContent=`Edit Experiment ${e.number}`;
+ document.getElementById("fExpNo").value=e.number;
+ document.getElementById("fExpTitle").value=e.title;
+ document.getElementById("fExpCategory").value=e.category;
+ document.getElementById("fExpStatement").value=e.statement;
+ document.getElementById("fExpCO").value=e.co||"";
+ document.getElementById("fExpHours").value=e.hours||0;
+ openModal("experimentModal");
+}
+function saveExperiment(){
+ const v=id=>document.getElementById(id).value.trim();
+ const obj={number:Number(v("fExpNo")),title:v("fExpTitle"),category:v("fExpCategory"),statement:v("fExpStatement"),co:v("fExpCO"),hours:Number(v("fExpHours")||0)};
+ if(!obj.number||!obj.title||!obj.statement){toast("Number, title and statement are required.");return}
+ const idx=Number(document.getElementById("editExpIndex").value);
+ if(idx<0)data.experiments.push(obj); else data.experiments[idx]=obj;
+ data.experiments.sort((a,b)=>a.number-b.number);
+ saveData();render();closeModal("experimentModal");toast("Experiment saved.");
+}
+function deleteExperiment(idx){
+ if(confirm("Delete this experiment from the current course configuration?")){data.experiments.splice(idx,1);saveData();render();toast("Experiment deleted.");}
+}
+function moveExperiment(idx,dir){
+ const j=idx+dir;if(j<0||j>=data.experiments.length)return;
+ [data.experiments[idx],data.experiments[j]]=[data.experiments[j],data.experiments[idx]];
+ data.experiments.forEach((e,i)=>e.number=i+1);saveData();render();toast("Experiment order updated.");
+}
+function resetExperiments(){
+ if(confirm("Restore the 12 experiments from the uploaded syllabus?")){data.experiments=JSON.parse(JSON.stringify(syllabusExperiments));saveData();render();toast("Syllabus experiments restored.");}
+}
+
+function openResourceEditor(){openModal("resourceModal")}
+function saveResource(){
+ const v=id=>document.getElementById(id).value.trim();
+ const r={type:v("fResType"),title:v("fResTitle"),author:v("fResAuthor"),url:v("fResURL")};
+ if(!r.title){toast("Resource title is required.");return}
+ data.resources.push(r);saveData();render();closeModal("resourceModal");
+ ["fResTitle","fResAuthor","fResURL"].forEach(id=>document.getElementById(id).value="");
+ toast("Resource added.");
+}
+function deleteResource(i){
+ if(confirm("Delete this resource?")){data.resources.splice(i,1);saveData();render();toast("Resource deleted.");}
+}
+
+function openSettings(){
+ const c=data.college;
+ [["fCollege",c.name],["fDepartment",c.department],["fAcademicYear",c.academicYear],["fUniversity",c.university],["fFaculty",c.faculty],["fHOD",c.hod]]
+ .forEach(([id,v])=>document.getElementById(id).value=v||"");
+ openModal("settingsModal");
+}
+let pendingLogo="";
+function previewLogo(event){
+ const file=event.target.files[0]; if(!file)return;
+ const reader=new FileReader(); reader.onload=()=>{pendingLogo=reader.result}; reader.readAsDataURL(file);
+}
+function saveSettings(){
+ const v=id=>document.getElementById(id).value.trim();
+ data.college={...data.college,name:v("fCollege"),department:v("fDepartment"),academicYear:v("fAcademicYear"),university:v("fUniversity"),faculty:v("fFaculty"),hod:v("fHOD")};
+ if(pendingLogo)data.college.logo=pendingLogo;
+ pendingLogo="";saveData();render();closeModal("settingsModal");toast("College settings saved.");
+}
+
+function exportData(){
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+ a.download=`${data.course.code || "course"}_phase1_backup.json`;a.click();URL.revokeObjectURL(a.href);toast("Backup downloaded.");
+}
+function importData(event){
+ const file=event.target.files[0];if(!file)return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const incoming=JSON.parse(reader.result);
+   if(!confirm("Replace the current Phase 1 data with this backup?"))return;
+   data={...defaultData,...incoming,course:{...defaultData.course,...(incoming.course||{})},college:{...defaultData.college,...(incoming.college||{})}};
+   saveData();render();toast("Backup restored.");
+  }catch(e){alert("Invalid JSON backup.");}
+  event.target.value="";
+ };
+ reader.readAsText(file);
+}
+
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")}));
+render();
+</script>
+</body>
+</html>

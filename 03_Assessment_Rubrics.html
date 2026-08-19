@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase 3 | Assessment & Rubrics | 1BCSL307A</title>
+<style>
+:root{--p:#1d4ed8;--pd:#163ea8;--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;--b:#dbe3ef;--g:#15803d;--a:#b45309;--r:#b91c1c;--shadow:0 8px 24px rgba(15,23,42,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 Inter,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--b);box-shadow:0 2px 10px #00000008}.head{max-width:1600px;margin:auto;display:flex;align-items:center;gap:14px;padding:11px 20px}.logo{width:56px;height:56px;border:1px solid var(--b);border-radius:11px;display:grid;place-items:center;overflow:hidden;background:#f8fafc}.logo img{width:100%;height:100%;object-fit:contain;display:none}.lp{font-weight:800;color:var(--p);font-size:11px}.ht{flex:1;min-width:0}.ht h1{font-size:19px;margin:0}.ht p{margin:2px 0 0;color:var(--muted);font-size:12px}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid var(--b);background:#fff;color:var(--text);padding:8px 11px;border-radius:8px;font-weight:700}.btn:hover{background:#f8fafc}.btn.primary{background:var(--p);border-color:var(--p);color:#fff}.btn.green{background:var(--g);border-color:var(--g);color:#fff}.btn.red{background:var(--r);border-color:var(--r);color:#fff}.btn.sm{padding:5px 8px;font-size:12px}
+.nav{display:flex;gap:5px;overflow:auto;padding:6px 20px;background:#f8fafc;border-top:1px solid #eef2f7}.nav a{white-space:nowrap;text-decoration:none;color:#475569;padding:7px 11px;border-radius:7px;font-size:12px;font-weight:800}.nav a.active{background:#dbeafe;color:var(--p)}.nav a.future{opacity:.55}
+.layout{max-width:1600px;margin:auto;display:grid;grid-template-columns:245px 1fr}.side{position:sticky;top:113px;height:calc(100vh - 113px);overflow:auto;background:#fff;border-right:1px solid var(--b);padding:16px 12px}.side h3{font-size:10px;text-transform:uppercase;color:#94a3b8;letter-spacing:.08em;margin:10px 9px 5px}.side a{display:block;text-decoration:none;color:#475569;padding:8px 10px;border-radius:7px}.side a:hover,.side a.active{background:#eff6ff;color:var(--p);font-weight:700}.content{padding:22px;min-width:0}.section{margin-bottom:27px;scroll-margin-top:130px}.sh{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:12px}.sh h2{margin:0;font-size:21px}.sh p{margin:2px 0 0;color:var(--muted);font-size:12px}.card{background:#fff;border:1px solid var(--b);border-radius:13px;box-shadow:var(--shadow);padding:17px}.grid{display:grid;gap:13px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.stat{background:#f8fafc;border:1px solid var(--b);border-radius:11px;padding:14px}.stat .l{font-size:11px;color:var(--muted)}.stat .v{font-size:24px;font-weight:900;margin-top:3px}.badge{display:inline-flex;padding:3px 7px;border-radius:999px;background:#e0e7ff;color:#3730a3;font-size:10px;font-weight:900}.green{background:#dcfce7;color:#166534}.amber{background:#fef3c7;color:#92400e}.gray{background:#f1f5f9;color:#475569}.redbg{background:#fee2e2;color:#991b1b}
+label{display:block;color:#475569;font-size:11px;font-weight:800;margin-bottom:4px}input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:8px 9px;background:#fff;color:var(--text)}input:focus,select:focus,textarea:focus{outline:0;border-color:#60a5fa;box-shadow:0 0 0 3px #3b82f61a}textarea{min-height:85px;resize:vertical}.field{margin-bottom:10px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:11px}.search{max-width:340px}.table-wrap{overflow:auto;border:1px solid var(--b);border-radius:9px}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:9px 10px;border-bottom:1px solid var(--b);text-align:left;vertical-align:middle;font-size:12px}th{background:#f8fafc;color:#475569;font-size:11px}tr:last-child td{border-bottom:0}.center{text-align:center}.num{text-align:right}.note{padding:11px 13px;border-left:4px solid var(--p);background:#eff6ff;border-radius:7px;font-size:12px}.note.warn{border-color:var(--a);background:#fffbeb}.note.ok{border-color:var(--g);background:#f0fdf4}.progress{height:9px;background:#e2e8f0;border-radius:99px;overflow:hidden}.progress>div{height:100%;background:var(--p);border-radius:99px}.footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}.muted{color:var(--muted)}.empty{text-align:center;color:var(--muted);padding:25px}
+.modal{position:fixed;inset:0;background:#0f172a99;z-index:50;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.box{width:min(1050px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:15px;box-shadow:0 25px 60px #0003}.mh{padding:14px 17px;border-bottom:1px solid var(--b);display:flex;justify-content:space-between;align-items:center}.mh h3{margin:0}.mb{padding:17px}.mf{padding:12px 17px;border-top:1px solid var(--b);display:flex;justify-content:flex-end;gap:7px}.toast{position:fixed;right:16px;bottom:16px;background:#172033;color:#fff;padding:10px 13px;border-radius:8px;display:none;z-index:100;font-size:12px}
+.rubric{border:1px solid var(--b);border-radius:10px;overflow:hidden;margin-bottom:12px}.rubric h4{margin:0;padding:11px;background:#f8fafc;font-size:13px}.rubric .desc{padding:9px 11px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--b)}.levels{display:grid;grid-template-columns:repeat(5,1fr)}.level{padding:9px;border-right:1px solid var(--b);font-size:11px}.level:last-child{border-right:0}.level strong{display:block;margin-bottom:4px}.rating{display:flex;gap:5px;align-items:center;margin-top:6px}.rating input{width:18px;height:18px;accent-color:var(--p)}
+.tabs{display:flex;gap:5px;overflow:auto;border-bottom:1px solid var(--b);margin-bottom:14px}.tab{border:0;background:transparent;padding:9px 12px;font-weight:800;color:#64748b;border-bottom:3px solid transparent}.tab.active{color:var(--p);border-color:var(--p)}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.side{display:none}.content{padding:15px}.g4{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.g2,.g3,.g4,.row,.row3{grid-template-columns:1fr}.content{padding:11px}.head{padding:9px 11px}.ht h1{font-size:16px}.levels{grid-template-columns:1fr}.level{border-right:0;border-bottom:1px solid var(--b)}}
+@media print{.header,.side,.nav,.no-print,.modal,.toast{display:none!important}.layout{display:block}.content{padding:0}.card{box-shadow:none}.section{break-inside:auto}.table-wrap{overflow:visible}table{min-width:0}}
+</style>
+</head>
+<body>
+<header class="header">
+ <div class="head">
+  <div class="logo"><img id="logoImg"><span id="logoText" class="lp">LOGO</span></div>
+  <div class="ht"><h1 id="college">College Name</h1><p id="courseLine">Project Management (with Git) · 1BCSL307A · Semester III</p></div>
+  <div class="actions no-print">
+   <button class="btn sm" onclick="openSettings()">Assessment Settings</button>
+   <button class="btn sm" onclick="importP2()">Import Phase 2</button>
+   <button class="btn sm" onclick="exportP3()">Export Data</button>
+   <button class="btn primary sm" onclick="window.print()">Print</button>
+   <input id="p2File" type="file" accept=".json" hidden onchange="readP2(event)">
+  </div>
+ </div>
+ <nav class="nav no-print">
+  <a href="01_Course_Syllabus.html">Phase 1 · Course</a>
+  <a href="02_Teaching_Student_Management.html">Phase 2 · Teaching & Students</a>
+  <a class="active" href="03_Assessment_Rubrics.html">Phase 3 · Assessment</a>
+  <a class="future" href="04_CO_PO_Attainment.html">Phase 4 · CO/PO/PSO</a>
+  <a class="future" href="05_Manuals_Reports.html">Phase 5 · Manuals</a>
+  <a class="future" href="06_Settings_Data_AI.html">Phase 6 · Settings & AI</a>
+ </nav>
+</header>
+<div class="layout">
+<aside class="side no-print">
+ <h3>Assessment</h3><a href="#dashboard">Dashboard</a><a href="#reports">Experiment Reports</a><a href="#test">CIE / Laboratory Test</a><a href="#see">SEE Record</a>
+ <h3>Rubrics</h3><a href="#cieRubric">CIE Continuous Rubric</a><a href="#testRubric">Test / SEE Rubric</a>
+ <h3>Results</h3><a href="#marks">Student Marks</a><a href="#eligibility">Eligibility & Result</a><a href="#exports">Exports</a>
+</aside>
+<main class="content">
+
+<section id="dashboard" class="section">
+ <div class="sh"><div><h2>Phase 3 Dashboard</h2><p>Assessment, rubric-based evaluation, CIE scaling and SEE record management.</p></div><span class="badge green">Phase 3 Active</span></div>
+ <div class="grid g4">
+  <div class="stat"><div class="l">Students</div><div class="v" id="nStudents">0</div></div>
+  <div class="stat"><div class="l">Report Component</div><div class="v">30</div><div class="muted">scaled CIE marks</div></div>
+  <div class="stat"><div class="l">Laboratory Test</div><div class="v">20</div><div class="muted">scaled CIE marks</div></div>
+  <div class="stat"><div class="l">CIE Total</div><div class="v">50</div></div>
+ </div>
+ <div class="grid g2" style="margin-top:13px">
+  <div class="card"><h3 style="margin-top:0">Official assessment structure in the supplied syllabus</h3>
+   <ul><li>CIE = 50 marks and SEE = 50 marks.</li><li>Each experiment report can be evaluated for 30 marks.</li><li>Total report marks are scaled to 30.</li><li>Laboratory test is for 50 marks and is scaled to 20.</li><li>Final CIE = report component + test component = 50.</li></ul>
+   <div class="note ok">This page follows those values rather than inventing a different CIE split.</div>
+  </div>
+  <div class="card"><h3 style="margin-top:0">Pass / SEE eligibility rules</h3>
+   <div class="grid g3"><div class="stat"><div class="l">CIE eligibility</div><div class="v">20/50</div></div><div class="stat"><div class="l">SEE pass</div><div class="v">18/50</div></div><div class="stat"><div class="l">Overall pass</div><div class="v">40/100</div></div></div>
+   <p class="muted">These thresholds are reproduced from the supplied draft syllabus.</p>
+  </div>
+ </div>
+</section>
+
+<section id="reports" class="section">
+ <div class="sh"><div><h2>Experiment Report Assessment</h2><p>Record report marks for each experiment and optionally apply the supplied CIE rubric.</p></div><button class="btn primary no-print" onclick="openReport()">Evaluate Report</button></div>
+ <div class="card">
+  <div class="toolbar no-print"><input id="reportSearch" class="search" placeholder="Search student or experiment..." oninput="renderReports()"><button class="btn sm" onclick="exportReports()">Export Report Marks CSV</button></div>
+  <div class="table-wrap"><table><thead><tr><th>Student</th><th>Experiment</th><th>Raw Report /30</th><th>Rubric Rating</th><th>Evaluated</th><th>Faculty Remark</th><th class="no-print">Action</th></tr></thead><tbody id="reportTable"></tbody></table></div>
+  <div class="note warn" style="margin-top:12px"><strong>Implementation note:</strong> the syllabus fixes the report maximum at 30 and requires scaling of all report marks to 30, but it does not state a mark distribution across the six CIE rubric criteria. The rubric-rating-to-30 conversion in this application is therefore an editable institutional implementation, not a claim that VTU prescribed those criterion weights.</div>
+ </div>
+</section>
+
+<section id="test" class="section">
+ <div class="sh"><div><h2>Laboratory Test / CIE Test</h2><p>Enter the 50-mark laboratory-test score; the application scales it to the 20-mark CIE component.</p></div><button class="btn primary no-print" onclick="openTest()">Enter Test Marks</button></div>
+ <div class="card">
+  <div class="grid g4">
+   <div class="stat"><div class="l">Raw Maximum</div><div class="v">50</div></div><div class="stat"><div class="l">CIE Weight</div><div class="v">20</div></div><div class="stat"><div class="l">Test Duration</div><div class="v">03h</div></div><div class="stat"><div class="l">Timing</div><div class="v" style="font-size:14px">Last week / after experiments</div></div>
+ </div>
+ <div class="table-wrap" style="margin-top:13px"><table><thead><tr><th>Student</th><th>Raw Test /50</th><th>Scaled Test /20</th><th>Rubric Rating</th><th>Remark</th><th class="no-print">Action</th></tr></thead><tbody id="testTable"></tbody></table></div>
+ </div>
+</section>
+
+<section id="see" class="section">
+ <div class="sh"><div><h2>SEE Record</h2><p>Record the Semester End Examination mark out of 50. The supplied syllabus identifies SEE as a practical examination of 03 hours.</p></div><button class="btn primary no-print" onclick="openSEE()">Enter SEE Marks</button></div>
+ <div class="card"><div class="table-wrap"><table><thead><tr><th>Student</th><th>SEE /50</th><th>Status</th><th>Remark</th><th class="no-print">Action</th></tr></thead><tbody id="seeTable"></tbody></table></div></div>
+</section>
+
+<section id="cieRubric" class="section">
+ <div class="sh"><div><h2>CIE Continuous Assessment Rubric</h2><p>Five-level rubric reproduced from the supplied syllabus.</p></div><span class="badge">1–5 rating</span></div>
+ <div id="cieRubricList"></div>
+</section>
+
+<section id="testRubric" class="section">
+ <div class="sh"><div><h2>SEE / CIE Test Rubric</h2><p>Rubric components and weights reproduced from the supplied syllabus; ratings are 1–5.</p></div><span class="badge">Source-based</span></div>
+ <div id="testRubricList"></div>
+</section>
+
+<section id="marks" class="section">
+ <div class="sh"><div><h2>Student Marks Ledger</h2><p>Automatic calculation of report component, test component, CIE, SEE and total.</p></div><div class="no-print"><button class="btn" onclick="exportMarks()">Export Marks CSV</button><button class="btn primary" onclick="window.print()">Print Ledger</button></div></div>
+ <div class="card">
+  <div class="table-wrap"><table><thead><tr><th>#</th><th>USN</th><th>Name</th><th>Reports Raw</th><th>Reports /30</th><th>Test /50</th><th>Test /20</th><th>CIE /50</th><th>SEE /50</th><th>Total /100</th><th>Status</th></tr></thead><tbody id="marksTable"></tbody></table></div>
+ </div>
+</section>
+
+<section id="eligibility" class="section">
+ <div class="sh"><div><h2>Eligibility & Result</h2><p>Automatic status based on the exact thresholds in the supplied draft syllabus.</p></div></div>
+ <div class="card">
+  <div class="table-wrap"><table><thead><tr><th>Student</th><th>CIE /50</th><th>CIE ≥20?</th><th>SEE /50</th><th>SEE ≥18?</th><th>Total /100</th><th>Overall ≥40?</th><th>Final Status</th></tr></thead><tbody id="eligTable"></tbody></table></div>
+  <div class="note warn" style="margin-top:12px">This tool reports eligibility/result according to the supplied draft syllabus. It does not replace the university's official examination system or institutional result processing.</div>
+ </div>
+</section>
+
+<section id="exports" class="section">
+ <div class="sh"><div><h2>Assessment Exports & Backup</h2><p>Portable records for faculty documentation and later phases.</p></div></div>
+ <div class="grid g3">
+  <div class="card"><h3>Full Phase 3 Backup</h3><p>Course, students, reports, tests, SEE and settings.</p><button class="btn primary" onclick="exportP3()">Download JSON</button></div>
+  <div class="card"><h3>Marks Ledger</h3><p>Student-level CIE, SEE and total marks.</p><button class="btn" onclick="exportMarks()">Download CSV</button></div>
+  <div class="card"><h3>Assessment Details</h3><p>Experiment reports and test records.</p><button class="btn" onclick="exportReports()">Download CSV</button></div>
+ </div>
+</section>
+<div class="footer">Phase 3 · Project Management with Git · 1BCSL307A · Assessment & Rubrics</div>
+</main></div>
+
+<div id="reportModal" class="modal"><div class="box"><div class="mh"><h3>Evaluate Experiment Report</h3><button class="btn sm" onclick="closeM('reportModal')">Close</button></div><div class="mb">
+ <div class="row"><div class="field"><label>Student</label><select id="rStudent"></select></div><div class="field"><label>Experiment</label><select id="rExp"></select></div></div>
+ <div class="row3"><div class="field"><label>Report Mark /30</label><input id="rMark" type="number" min="0" max="30" step="0.5"></div><div class="field"><label>Rubric Average /5 (optional)</label><input id="rRating" type="number" min="1" max="5" step="0.1"></div><div class="field"><label>Evaluated?</label><select id="rEval"><option value="true">Yes</option><option value="false">No</option></select></div></div>
+ <div class="field"><label>Faculty Remark</label><textarea id="rRemark" placeholder="Observation, correction, feedback..."></textarea></div>
+ <div class="note">The report score is recorded directly out of 30 because that maximum is explicit in the syllabus. Rubric rating is stored separately for evidence and can be used for institutional conversion if adopted.</div>
+ <input id="rId" type="hidden">
+ </div><div class="mf"><button class="btn" onclick="closeM('reportModal')">Cancel</button><button class="btn primary" onclick="saveReport()">Save Report</button></div></div></div>
+
+<div id="testModal" class="modal"><div class="box"><div class="mh"><h3>Enter Laboratory Test Marks</h3><button class="btn sm" onclick="closeM('testModal')">Close</button></div><div class="mb">
+ <div class="row"><div class="field"><label>Student</label><select id="tStudent"></select></div><div class="field"><label>Raw Test Mark /50</label><input id="tMark" type="number" min="0" max="50" step="0.5"></div></div>
+ <div class="row"><div class="field"><label>Rubric Average /5 (optional)</label><input id="tRating" type="number" min="1" max="5" step="0.1"></div><div class="field"><label>Test Remark</label><input id="tRemark"></div></div>
+ <div class="note ok">Automatic scaling: Raw test mark ÷ 50 × 20 = CIE test component out of 20.</div><input id="tId" type="hidden">
+ </div><div class="mf"><button class="btn" onclick="closeM('testModal')">Cancel</button><button class="btn primary" onclick="saveTest()">Save Test</button></div></div></div>
+
+<div id="seeModal" class="modal"><div class="box"><div class="mh"><h3>Enter SEE Marks</h3><button class="btn sm" onclick="closeM('seeModal')">Close</button></div><div class="mb">
+ <div class="row"><div class="field"><label>Student</label><select id="sStudent"></select></div><div class="field"><label>SEE Mark /50</label><input id="sMark" type="number" min="0" max="50" step="0.5"></div></div>
+ <div class="field"><label>Remark</label><input id="sRemark"></div><input id="sId" type="hidden">
+ <div class="note">SEE is a separate 50-mark component. The supplied syllabus states a minimum of 18/50 to pass SEE.</div>
+ </div><div class="mf"><button class="btn" onclick="closeM('seeModal')">Cancel</button><button class="btn primary" onclick="saveSEE()">Save SEE</button></div></div></div>
+
+<div id="settingsModal" class="modal"><div class="box"><div class="mh"><h3>Assessment Settings</h3><button class="btn sm" onclick="closeM('settingsModal')">Close</button></div><div class="mb">
+ <div class="row3"><div class="field"><label>Report Component /30</label><input id="setReport" type="number" value="30" min="0"></div><div class="field"><label>Test Raw /50</label><input id="setTestRaw" type="number" value="50" min="1"></div><div class="field"><label>Test CIE /20</label><input id="setTestScaled" type="number" value="20" min="0"></div></div>
+ <div class="row3"><div class="field"><label>CIE Total</label><input id="setCIE" type="number" value="50" min="0"></div><div class="field"><label>SEE Total</label><input id="setSEE" type="number" value="50" min="0"></div><div class="field"><label>Overall Total</label><input id="setTotal" type="number" value="100" min="1"></div></div>
+ <div class="row3"><div class="field"><label>CIE Eligibility Minimum</label><input id="setCIEPass" type="number" value="20"></div><div class="field"><label>SEE Pass Minimum</label><input id="setSEEPass" type="number" value="18"></div><div class="field"><label>Overall Pass Minimum</label><input id="setOverallPass" type="number" value="40"></div></div>
+ <div class="note warn">Defaults reproduce the supplied syllabus. Change them only when your approved institutional/university document requires a different configuration.</div>
+ </div><div class="mf"><button class="btn" onclick="closeM('settingsModal')">Cancel</button><button class="btn primary" onclick="saveSettings()">Save</button></div></div></div>
+
+<div id="toast" class="toast"></div>
+<script>
+const KEY="pmgit_phase3_v1";
+const defaultData={
+ course:{name:"Project Management (with Git)",code:"1BCSL307A",scheme:"2025",semester:3},
+ college:{name:"College Name",department:"Department Name",academicYear:"2025-26",faculty:"",hod:"",university:"Visvesvaraya Technological University",logo:""},
+ experiments:[
+  {number:1,title:"Setting Up and Basic Commands",co:"CO1"},{number:2,title:"Creating and Managing Branches",co:"CO2"},{number:3,title:"Creating and Managing Branches",co:"CO2"},
+  {number:4,title:"Collaboration and Remote Repositories",co:"CO3"},{number:5,title:"Collaboration and Remote Repositories",co:"CO3"},{number:6,title:"Collaboration and Remote Repositories",co:"CO3"},
+  {number:7,title:"Git Tags and Releases",co:"CO4"},{number:8,title:"Advanced Git Operations",co:"CO4"},{number:9,title:"Analysing and Changing Git History",co:"CO5"},{number:10,title:"Analysing and Changing Git History",co:"CO5"},{number:11,title:"Analysing and Changing Git History",co:"CO5"},{number:12,title:"Analysing and Changing Git History",co:"CO5"}
+ ],
+ students:[],reports:[],tests:[],see:[],
+ settings:{reportMax:30,testRawMax:50,testScaledMax:20,cieTotal:50,seeTotal:50,total:100,ciePass:20,seePass:18,overallPass:40}
+};
+const cieRubric=[
+ {name:"Git Fundamentals and Repository Operations",co:"CO1",po:"PO1, PO5",d:["Demonstrates comprehensive understanding of Git concepts, repositories, commits, and version control.","Demonstrates good understanding of Git concepts with minor gaps.","Demonstrates basic understanding of Git concepts.","Limited understanding of Git concepts.","Unable to explain fundamental Git concepts."]},
+ {name:"Branching and Workflow Management",co:"CO2",po:"PO2, PO3",d:["Independently creates, manages, and merges branches correctly.","Performs branch operations with minor guidance.","Performs basic branch operations with some errors.","Requires significant assistance for branch management.","Unable to perform branch operations."]},
+ {name:"Collaboration and Remote Repository Management",co:"CO3",po:"PO2, PO5, PO9",d:["Efficiently performs clone, fetch, pull, push, and rebase operations.","Performs most remote repository operations correctly.","Performs basic collaboration tasks with assistance.","Difficulty in executing remote repository commands.","Unable to use remote repositories."]},
+ {name:"Tags, Releases and Advanced Git Operations",co:"CO4",po:"PO4, PO11",d:["Correctly applies tags, stash, cherry-pick, and advanced Git operations.","Performs advanced operations with minor mistakes.","Performs some advanced operations with guidance.","Limited ability to perform advanced operations.","Unable to perform advanced Git operations."]},
+ {name:"Git History Analysis and Repository Maintenance",co:"CO5",po:"PO2, PO4, PO5, PO11",d:["Accurately analyses commit history and applies history modification commands.","Performs history analysis with minor errors.","Performs basic history viewing commands.","Requires assistance to analyse history.","Unable to analyse Git history."]},
+ {name:"Demonstration and documentation",co:"CO1–CO5",po:"PO10, PO11",d:["Demonstrates all experiments confidently and maintains a complete, well-organized, and accurate lab record.","Demonstrates most experiments correctly and maintains a well-organized lab record with minor omissions.","Demonstrates basic experiments and maintains an adequate lab record with some missing details.","Demonstrates limited understanding of experiments and maintains an incomplete or poorly organized lab record.","Unable to demonstrate experiments effectively and fails to maintain a proper lab record."]}
+];
+const testRubric=[
+ {name:"Git Fundamentals and Repository Operations",weight:2,co:"CO1",po:"PO1, PO5",d:["Demonstrates excellent understanding of Git concepts and workflows.","Demonstrates good understanding of Git concepts with minor gaps.","Demonstrates basic understanding of Git concepts.","Demonstrates limited understanding of Git concepts.","Unable to explain basic Git concepts."]},
+ {name:"Understanding of Problem Definition",weight:1,co:"CO1",po:"PO2",d:["Clearly understands and accurately interprets the given Git task and requirements.","Understands the task with minor clarification.","Demonstrates basic understanding of the task.","Shows limited understanding of the task requirements.","Unable to understand the given task or requirements."]},
+ {name:"Design and Implementation",weight:3,co:"CO2, CO3, CO4",po:"PO3, PO5",d:["Designs and implements Git workflows and operations accurately and efficiently.","Implements Git workflows with minor errors.","Demonstrates basic implementation of Git operations.","Requires significant assistance for implementation.","Unable to implement the required Git operations."]},
+ {name:"Result & Analysis",weight:2,co:"CO5",po:"PO4, PO5",d:["Accurately analyses results and draws appropriate conclusions.","Analyses results with minor errors.","Demonstrates basic result interpretation.","Shows limited ability to analyse results.","Unable to interpret or analyse results."]},
+ {name:"Communication (Viva voce)",weight:2,co:"CO3",po:"PO8, PO9",d:["Communicates ideas, concepts, and solutions clearly and confidently during viva.","Communicates concepts effectively with minor errors.","Demonstrates basic communication and understanding.","Communicates with difficulty and requires frequent prompting.","Unable to communicate concepts or answer viva questions."]}
+];
+let data=load();
+function fresh(){return JSON.parse(JSON.stringify(defaultData))}
+function load(){try{let x=JSON.parse(localStorage.getItem(KEY));if(x)return merge(fresh(),x)}catch(e){}return fresh()}
+function merge(a,b){return{...a,...b,course:{...a.course,...(b.course||{})},college:{...a.college,...(b.college||{})},settings:{...a.settings,...(b.settings||{})},experiments:b.experiments||a.experiments,students:b.students||[],reports:b.reports||[],tests:b.tests||[],see:b.see||[]}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function toast(s){let t=document.getElementById("toast");t.textContent=s;t.style.display="block";clearTimeout(window.tt);window.tt=setTimeout(()=>t.style.display="none",2200)}
+function openM(id){document.getElementById(id).classList.add("open")}function closeM(id){document.getElementById(id).classList.remove("open")}
+function render(){header();stats();renderReports();renderTests();renderSEE();renderRubrics();renderMarks();renderEligibility()}
+function header(){document.getElementById("college").textContent=data.college.name||"College Name";document.getElementById("courseLine").textContent=`${data.course.name} · ${data.course.code} · Semester ${data.course.semester} · Scheme ${data.course.scheme}`;let im=document.getElementById("logoImg"),tx=document.getElementById("logoText");if(data.college.logo){im.src=data.college.logo;im.style.display="block";tx.style.display="none"}else{im.style.display="none";tx.style.display="block"}}
+function stats(){document.getElementById("nStudents").textContent=data.students.filter(s=>s.active!==false).length}
+function students(){return data.students.filter(s=>s.active!==false)}
+function studentName(id){let s=data.students.find(x=>x.id===id);return s?s.name+" ("+s.usn+")":"Unknown"}
+function rawReports(id){return data.reports.filter(r=>r.studentId===id).reduce((a,r)=>a+Number(r.mark||0),0)}
+function reportScaled(id){let total=rawReports(id),n=data.experiments.length;let maxRaw=n*data.settings.reportMax;return maxRaw?Math.min(data.settings.reportMax,total/maxRaw*data.settings.reportMax):0}
+function testScaled(id){let t=data.tests.find(x=>x.studentId===id);return t?Math.min(data.settings.testScaledMax,Math.max(0,Number(t.mark||0))/data.settings.testRawMax*data.settings.testScaledMax):0}
+function cie(id){return Math.min(data.settings.cieTotal,reportScaled(id)+testScaled(id))}
+function seeMark(id){let s=data.see.find(x=>x.studentId===id);return s?Math.min(data.settings.seeTotal,Math.max(0,Number(s.mark||0))):0}
+function total(id){return cie(id)+seeMark(id)}
+function status(id){let c=cie(id),s=seeMark(id),t=total(id);if(c<data.settings.ciePass)return["Not eligible for SEE","redbg"];if(s>0&&s<data.settings.seePass)return["SEE not passed","redbg"];if(t>=data.settings.overallPass&&s>=data.settings.seePass)return["Passed","green"];if(s===0)return["Awaiting SEE","amber"];return["Not passed","redbg"]}
+function renderReports(){let q=(document.getElementById("reportSearch")?.value||"").toLowerCase(),arr=data.reports.filter(r=>(studentName(r.studentId)+" Experiment "+r.expNo+" "+(r.remark||"")).toLowerCase().includes(q));document.getElementById("reportTable").innerHTML=arr.length?arr.map(r=>`<tr><td>${esc(studentName(r.studentId))}</td><td>Experiment ${r.expNo}</td><td>${Number(r.mark||0).toFixed(1)} / ${data.settings.reportMax}</td><td>${r.rating?esc(r.rating):"-"} /5</td><td>${r.evaluated?'<span class="badge green">Yes</span>':'<span class="badge amber">No</span>'}</td><td>${esc(r.remark||"")}</td><td class="no-print"><button class="btn sm" onclick="editReport('${r.id}')">Edit</button> <button class="btn sm" onclick="delReport('${r.id}')">Delete</button></td></tr>`).join(""):`<tr><td colspan="7" class="empty">No report assessments yet.</td></tr>`}
+function fillSelect(id,opts){document.getElementById(id).innerHTML=opts.map(x=>`<option value="${esc(x.value)}">${esc(x.label)}</option>`).join("")}
+function openReport(id=null){fillSelect("rStudent",students().map(s=>({value:s.id,label:s.name+" · "+s.usn})));fillSelect("rExp",data.experiments.map(e=>({value:e.number,label:"Experiment "+e.number+" · "+e.title})));document.getElementById("rId").value="";document.getElementById("rMark").value="";document.getElementById("rRating").value="";document.getElementById("rEval").value="true";document.getElementById("rRemark").value="";if(id)editReport(id);else openM("reportModal")}
+function editReport(id){let r=data.reports.find(x=>x.id===id);if(!r)return;openReport();document.getElementById("rId").value=id;document.getElementById("rStudent").value=r.studentId;document.getElementById("rExp").value=r.expNo;document.getElementById("rMark").value=r.mark;document.getElementById("rRating").value=r.rating??"";document.getElementById("rEval").value=String(r.evaluated!==false);document.getElementById("rRemark").value=r.remark||""}
+function saveReport(){let sid=document.getElementById("rStudent").value,exp=Number(document.getElementById("rExp").value),mark=Number(document.getElementById("rMark").value),id=document.getElementById("rId").value;if(!sid||!exp||mark<0||mark>data.settings.reportMax){toast("Enter a valid report mark.");return}let r={id:id||crypto.randomUUID(),studentId:sid,expNo:exp,mark,rating:document.getElementById("rRating").value?Number(document.getElementById("rRating").value):null,evaluated:document.getElementById("rEval").value==="true",remark:document.getElementById("rRemark").value};let ix=data.reports.findIndex(x=>x.id===id);if(ix<0)data.reports.push(r);else data.reports[ix]=r;save();render();closeM("reportModal");toast("Report assessment saved.")}
+function delReport(id){if(confirm("Delete this report assessment?")){data.reports=data.reports.filter(x=>x.id!==id);save();render();}}
+function renderTests(){document.getElementById("testTable").innerHTML=students().map(s=>{let t=data.tests.find(x=>x.studentId===s.id);return`<tr><td>${esc(studentName(s.id))}</td><td>${t?Number(t.mark).toFixed(1):"-"} /50</td><td>${t?testScaled(s.id).toFixed(2):"-"} /${data.settings.testScaledMax}</td><td>${t?.rating??"-"} /5</td><td>${esc(t?.remark||"")}</td><td class="no-print"><button class="btn sm" onclick="openTest('${s.id}')">${t?"Edit":"Enter"}</button></td></tr>`}).join("")||`<tr><td colspan="6" class="empty">No students available.</td></tr>`}
+function openTest(studentId=null){fillSelect("tStudent",students().map(s=>({value:s.id,label:s.name+" · "+s.usn})));document.getElementById("tId").value="";document.getElementById("tMark").value="";document.getElementById("tRating").value="";document.getElementById("tRemark").value="";if(studentId){document.getElementById("tStudent").value=studentId;let t=data.tests.find(x=>x.studentId===studentId);if(t){document.getElementById("tMark").value=t.mark;document.getElementById("tRating").value=t.rating??"";document.getElementById("tRemark").value=t.remark||"";document.getElementById("tId").value=t.id}}openM("testModal")}
+function saveTest(){let sid=document.getElementById("tStudent").value,m=Number(document.getElementById("tMark").value);if(!sid||m<0||m>data.settings.testRawMax){toast("Enter a valid test mark out of 50.");return}let old=data.tests.find(x=>x.studentId===sid),r={id:old?.id||crypto.randomUUID(),studentId:sid,mark:m,rating:document.getElementById("tRating").value?Number(document.getElementById("tRating").value):null,remark:document.getElementById("tRemark").value};if(old)Object.assign(old,r);else data.tests.push(r);save();render();closeM("testModal");toast("Laboratory test saved.")}
+function renderSEE(){document.getElementById("seeTable").innerHTML=students().map(s=>{let m=seeMark(s.id),has=data.see.some(x=>x.studentId===s.id);return`<tr><td>${esc(studentName(s.id))}</td><td>${has?m.toFixed(1):"-"} /50</td><td>${has?(m>=data.settings.seePass?'<span class="badge green">Pass</span>':'<span class="badge redbg">Fail</span>'):'<span class="badge amber">Pending</span>'}</td><td>${esc(data.see.find(x=>x.studentId===s.id)?.remark||"")}</td><td class="no-print"><button class="btn sm" onclick="openSEE('${s.id}')">${has?"Edit":"Enter"}</button></td></tr>`}).join("")||`<tr><td colspan="5" class="empty">No students available.</td></tr>`}
+function openSEE(studentId=null){fillSelect("sStudent",students().map(s=>({value:s.id,label:s.name+" · "+s.usn})));document.getElementById("sMark").value="";document.getElementById("sRemark").value="";document.getElementById("sId").value="";if(studentId){document.getElementById("sStudent").value=studentId;let x=data.see.find(x=>x.studentId===studentId);if(x){document.getElementById("sMark").value=x.mark;document.getElementById("sRemark").value=x.remark||"";document.getElementById("sId").value=x.id}}openM("seeModal")}
+function saveSEE(){let sid=document.getElementById("sStudent").value,m=Number(document.getElementById("sMark").value);if(!sid||m<0||m>data.settings.seeTotal){toast("Enter a valid SEE mark out of 50.");return}let old=data.see.find(x=>x.studentId===sid),r={id:old?.id||crypto.randomUUID(),studentId:sid,mark:m,remark:document.getElementById("sRemark").value};if(old)Object.assign(old,r);else data.see.push(r);save();render();closeM("seeModal");toast("SEE mark saved.")}
+function rubricHTML(arr){return arr.map(x=>`<div class="rubric"><h4>${esc(x.name)} ${x.weight?`<span class="badge amber">Weight ${x.weight}</span>`:""}</h4><div class="desc"><strong>CO:</strong> ${esc(x.co)} &nbsp; <strong>PO:</strong> ${esc(x.po)}</div><div class="levels">${x.d.map((d,i)=>`<div class="level"><strong>${5-i} · ${["Superior","Good","Fair","Needs Improvement","Unacceptable"][i]}</strong>${esc(d)}</div>`).join("")}</div></div>`).join("")}
+function renderRubrics(){document.getElementById("cieRubricList").innerHTML=rubricHTML(cieRubric);document.getElementById("testRubricList").innerHTML=rubricHTML(testRubric)}
+function renderMarks(){document.getElementById("marksTable").innerHTML=students().map((s,i)=>{let raw=rawReports(s.id),rs=reportScaled(s.id),tm=data.tests.find(x=>x.studentId===s.id),ts=testScaled(s.id),c=cie(s.id),sm=seeMark(s.id),tot=total(s.id),st=status(s.id);return`<tr><td>${i+1}</td><td>${esc(s.usn)}</td><td>${esc(s.name)}</td><td>${raw.toFixed(1)}</td><td>${rs.toFixed(2)} /30</td><td>${tm?Number(tm.mark).toFixed(1):"-"}</td><td>${tm?ts.toFixed(2):"-"} /20</td><td><strong>${c.toFixed(2)}</strong> /50</td><td>${data.see.some(x=>x.studentId===s.id)?sm.toFixed(1):"-"}</td><td><strong>${tot.toFixed(2)}</strong> /100</td><td><span class="badge ${st[1]}">${st[0]}</span></td></tr>`}).join("")||`<tr><td colspan="11" class="empty">No students available. Import Phase 2 data first.</td></tr>`}
+function renderEligibility(){document.getElementById("eligTable").innerHTML=students().map(s=>{let c=cie(s.id),sm=seeMark(s.id),tot=total(s.id),hasSEE=data.see.some(x=>x.studentId===s.id),cs=c>=data.settings.ciePass,ss=hasSEE&&sm>=data.settings.seePass,os=hasSEE&&tot>=data.settings.overallPass,st=status(s.id);return`<tr><td>${esc(studentName(s.id))}</td><td>${c.toFixed(2)}</td><td>${cs?"Yes":"No"}</td><td>${hasSEE?sm.toFixed(1):"-"}</td><td>${hasSEE?(ss?"Yes":"No"):"Pending"}</td><td>${tot.toFixed(2)}</td><td>${hasSEE?(os?"Yes":"No"):"Pending"}</td><td><span class="badge ${st[1]}">${st[0]}</span></td></tr>`}).join("")||`<tr><td colspan="8" class="empty">No students available.</td></tr>`}
+function openSettings(){let s=data.settings;document.getElementById("setReport").value=s.reportMax;document.getElementById("setTestRaw").value=s.testRawMax;document.getElementById("setTestScaled").value=s.testScaledMax;document.getElementById("setCIE").value=s.cieTotal;document.getElementById("setSEE").value=s.seeTotal;document.getElementById("setTotal").value=s.total;document.getElementById("setCIEPass").value=s.ciePass;document.getElementById("setSEEPass").value=s.seePass;document.getElementById("setOverallPass").value=s.overallPass;openM("settingsModal")}
+function saveSettings(){data.settings={reportMax:+setReport.value,testRawMax:+setTestRaw.value,testScaledMax:+setTestScaled.value,cieTotal:+setCIE.value,seeTotal:+setSEE.value,total:+setTotal.value,ciePass:+setCIEPass.value,seePass:+setSEEPass.value,overallPass:+setOverallPass.value};save();render();closeM("settingsModal");toast("Assessment settings saved.")}
+function importP2(){document.getElementById("p2File").click()}
+function readP2(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!Array.isArray(x.students)){alert("This does not appear to be a Phase 2 backup.");return}data.students=x.students;data.course={...data.course,...(x.course||{})};data.college={...data.college,...(x.college||{})};if(Array.isArray(x.experiments)&&x.experiments.length)data.experiments=x.experiments;save();render();toast("Phase 2 student/course data imported.")}catch(err){alert("Invalid JSON.")}e.target.value=""};r.readAsText(f)}
+function download(content,name,type){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+function exportP3(){download(JSON.stringify(data,null,2),`${data.course.code}_phase3_assessment_backup.json`,"application/json");toast("Phase 3 backup downloaded.")}
+function csv(v){return`"${String(v??"").replaceAll('"','""')}"`}
+function exportMarks(){let out=["USN,Name,Reports Raw,Reports Scaled /30,Test Raw /50,Test Scaled /20,CIE /50,SEE /50,Total /100,Status",...students().map(s=>[s.usn,s.name,rawReports(s.id).toFixed(2),reportScaled(s.id).toFixed(2),data.tests.find(x=>x.studentId===s.id)?.mark??"",testScaled(s.id).toFixed(2),cie(s.id).toFixed(2),data.see.find(x=>x.studentId===s.id)?.mark??"",total(s.id).toFixed(2),status(s.id)[0]].map(csv).join(","))].join("\\n");download(out,"phase3_marks_ledger.csv","text/csv")}
+function exportReports(){let out=["USN,Name,Experiment,Report Mark /30,Rubric Rating /5,Evaluated,Remark",...data.reports.map(r=>{let s=data.students.find(x=>x.id===r.studentId);return[s?.usn,s?.name,r.expNo,r.mark,r.rating??"",r.evaluated?"Yes":"No",r.remark||""].map(csv).join(",")})].join("\\n");download(out,"phase3_report_assessments.csv","text/csv")}
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")}));
+render();
+</script>
+</body>
+</html>
